@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.36324.19
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DivineCRM", "DivineCRM\DivineCRM.csproj", "{2DBF5156-148A-40AC-890B-2458A9C93FCC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2DBF5156-148A-40AC-890B-2458A9C93FCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DBF5156-148A-40AC-890B-2458A9C93FCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DBF5156-148A-40AC-890B-2458A9C93FCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DBF5156-148A-40AC-890B-2458A9C93FCC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1DB15932-8040-4A01-8371-32AB8ABA8F2A}
+	EndGlobalSection
+EndGlobal
