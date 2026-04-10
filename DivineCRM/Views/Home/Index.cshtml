@@ -1,36 +1,1488 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+    :root {
+        --bg: #08090d;
+        --bg2: #0d0f18;
+        --bg3: #111420;
+        --card-border: rgba(255,255,255,0.07);
+        --accent: #4f6ef7;
+        --accent2: #7c3aed;
+        --accent3: #06b6d4;
+        --grad: linear-gradient(135deg, #4f6ef7, #7c3aed);
+        --text: #f0f2ff;
+        --muted: #8892b0;
+        --muted2: #5a6480;
+        --font: 'Outfit', sans-serif;
+        --font2: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--font2);
+        line-height: 1.7;
+        overflow-x: hidden;
+    }
+
+    @@keyframes fadeUp {
+        from {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @@keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @@keyframes pulse {
+        0%, 100% {
+            box-shadow: 0 0 0 0 rgba(79,110,247,0.4);
+        }
+
+        50% {
+            box-shadow: 0 0 0 12px rgba(79,110,247,0);
+        }
+    }
+
+    @@keyframes float {
+        0%, 100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-12px);
+        }
+    }
+
+    @@keyframes shimmer {
+        0% {
+            background-position: -200% center;
+        }
+
+        100% {
+            background-position: 200% center;
+        }
+    }
+
+    @@keyframes borderPulse {
+        0%, 100% {
+            border-color: rgba(79,110,247,0.3);
+        }
+
+        50% {
+            border-color: rgba(124,58,237,0.6);
+        }
+    }
+
+    @@keyframes scrollTrack {
+        from {
+            transform: translateX(0);
+        }
+
+        to {
+            transform: translateX(-50%);
+        }
+    }
+
+    @@keyframes glow {
+        0%, 100% {
+            filter: drop-shadow(0 0 20px rgba(79,110,247,0.4));
+        }
+
+        50% {
+            filter: drop-shadow(0 0 40px rgba(124,58,237,0.6));
+        }
+    }
+
+    .reveal {
+        opacity: 0;
+        transform: translateY(35px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+    .reveal-left {
+        opacity: 0;
+        transform: translateX(-35px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+        .reveal-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+    .reveal-right {
+        opacity: 0;
+        transform: translateX(35px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+        .reveal-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+    .d1 {
+        transition-delay: 0.1s;
+    }
+
+    .d2 {
+        transition-delay: 0.2s;
+    }
+
+    .d3 {
+        transition-delay: 0.3s;
+    }
+
+    .d4 {
+        transition-delay: 0.4s;
+    }
+
+    nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 5%;
+        height: 68px;
+        background: rgba(8,9,13,0.85);
+        backdrop-filter: blur(20px);
+        border-bottom: 0.5px solid var(--card-border);
+        animation: fadeIn 0.5s ease;
+        transition: background 0.3s;
+    }
+
+    .nav-logo {
+        font-family: var(--font);
+        font-weight: 800;
+        font-size: 22px;
+        letter-spacing: -0.5px;
+        background: var(--grad);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 28px;
+    }
+
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+            .nav-links a:hover {
+                color: var(--text);
+            }
+
+    .nav-cta {
+        background: var(--grad);
+        color: white;
+        border: none;
+        padding: 10px 22px;
+        border-radius: 25px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: var(--font);
+        animation: pulse 2.5s infinite;
+        text-decoration: none;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+        .nav-cta:hover {
+            transform: translateY(-1px);
+        }
+
+    .mesh-bg {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+    }
+
+    .mesh-orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.22;
+    }
+
+    .orb1 {
+        width: 600px;
+        height: 600px;
+        background: #4f6ef7;
+        top: -200px;
+        left: -100px;
+        animation: float 8s ease-in-out infinite;
+    }
+
+    .orb2 {
+        width: 500px;
+        height: 500px;
+        background: #7c3aed;
+        top: 0;
+        right: -150px;
+        animation: float 10s ease-in-out infinite reverse;
+    }
+
+    .orb3 {
+        width: 400px;
+        height: 400px;
+        background: #06b6d4;
+        bottom: 0;
+        left: 30%;
+        animation: float 12s ease-in-out infinite;
+    }
+
+    .hero {
+        /*position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 120px 5% 80px;
+        overflow: hidden;*/
+
+        display: flex;
+        justify-content: center; /* horizontal center */
+        align-items: center; /* vertical center */
+        text-align: center; /* center text */
+        min-height: 100vh; /* full screen height */
+        padding: 40px 20px;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        /*max-width: 680px;*/
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(79,110,247,0.12);
+        border: 1px solid rgba(79,110,247,0.3);
+        color: #a5b4ff;
+        padding: 6px 16px;
+        border-radius: 30px;
+        font-size: 13px;
+        font-weight: 500;
+        margin-bottom: 24px;
+        animation: fadeUp 0.6s ease both;
+    }
+
+    .badge-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #4f6ef7;
+        animation: pulse 1.5s infinite;
+    }
+
+    .hero h1 {
+        font-family: var(--font);
+        font-size: clamp(38px,5.5vw,66px);
+        font-weight: 800;
+        line-height: 1.1;
+        letter-spacing: -1.5px;
+        animation: fadeUp 0.7s ease 0.15s both;
+    }
+
+    .grad-text {
+        background: linear-gradient(135deg, #4f6ef7 0%, #a78bfa 40%, #06b6d4 100%);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: shimmer 4s linear infinite;
+    }
+
+    .hero p {
+        color: var(--muted);
+        font-size: 16px;
+        margin-top: 20px;
+        max-width: 560px;
+        line-height: 1.8;
+        animation: fadeUp 0.7s ease 0.3s both;
+    }
+
+    /*.hero-bullets {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin: 28px 0;
+        animation: fadeUp 0.7s ease 0.45s both;
+    }*/
+
+    /*.hero-bullet {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 14px;
+        color: var(--muted);
+        font-weight: 500;
+    }*/
+
+    .bullet-check {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--grad);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-size: 11px;
+        color: white;
+    }
+
+    /*.cta-row {
+        display: flex;
+        gap: 14px;
+        margin-top: 36px;
+        animation: fadeUp 0.7s ease 0.6s both;
+        flex-wrap: wrap;
+    }*/
+
+    .btn-primary {
+        background: var(--grad);
+        color: white;
+        padding: 14px 30px;
+        border-radius: 30px;
+        font-weight: 700;
+        font-size: 15px;
+        text-decoration: none;
+        font-family: var(--font);
+        transition: transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 8px 30px rgba(79,110,247,0.4);
+    }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(79,110,247,0.55);
+        }
+
+    .btn-outline {
+        border: 1.5px solid rgba(255,255,255,0.2);
+        color: var(--text);
+        padding: 14px 30px;
+        border-radius: 30px;
+        font-weight: 600;
+        font-size: 15px;
+        text-decoration: none;
+        font-family: var(--font);
+        transition: border-color 0.2s, background 0.2s, transform 0.2s;
+        backdrop-filter: blur(8px);
+    }
+
+        .btn-outline:hover {
+            border-color: rgba(79,110,247,0.6);
+            background: rgba(79,110,247,0.08);
+            transform: translateY(-2px);
+        }
+
+    /*.hero-stats {
+        display: flex;
+        gap: 36px;
+        margin-top: 50px;
+        padding-top: 36px;
+        border-top: 0.5px solid var(--card-border);
+        animation: fadeUp 0.7s ease 0.75s both;
+        flex-wrap: wrap;
+    }*/
 
 
-<h1>
-    dawood ibrahim 
-</h1>
+
+    .hero-bullets {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px 20px;
+    }
+
+    .hero-bullet {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .cta-row {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+    }
+
+    .hero-stats {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 30px;
+        margin-top: 30px;
+    }
+
+    .stat-num {
+        font-family: var(--font);
+        font-size: 28px;
+        font-weight: 800;
+        display: block;
+        background: var(--grad);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .stat-label {
+        font-size: 12px;
+        color: var(--muted2);
+        margin-top: 2px;
+    }
+
+    section {
+        padding: 80px 5%;
+        position: relative;
+    }
+
+    .sec-dark {
+        background: var(--bg2);
+    }
+
+    .sec-darker {
+        background: var(--bg3);
+    }
+
+    .section-tag {
+        display: inline-block;
+        background: rgba(79,110,247,0.1);
+        border: 1px solid rgba(79,110,247,0.25);
+        color: #a5b4ff;
+        padding: 5px 14px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        margin-bottom: 14px;
+    }
+
+    .section-title {
+        font-family: var(--font);
+        font-size: clamp(26px,3.5vw,42px);
+        font-weight: 800;
+        letter-spacing: -0.8px;
+        line-height: 1.2;
+    }
+
+    .section-sub {
+        color: var(--muted);
+        font-size: 16px;
+        margin-top: 10px;
+        max-width: 600px;
+    }
+
+    .tc {
+        text-align: center;
+    }
+
+    .mx {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .grid {
+        display: grid;
+        gap: 20px;
+        margin-top: 50px;
+    }
+
+    .g4 {
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    }
+
+    .g3 {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .g2 {
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    }
+
+    .card {
+        background: rgba(255,255,255,0.03);
+        border: 1px solid var(--card-border);
+        border-radius: 18px;
+        padding: 28px;
+        transition: transform 0.35s cubic-bezier(.25,.46,.45,.94), border-color 0.35s, background 0.35s, box-shadow 0.35s;
+        position: relative;
+        overflow: hidden;
+        cursor: default;
+    }
+
+        .card:hover {
+            transform: translateY(-6px) scale(1.01);
+            border-color: rgba(79,110,247,0.5);
+            background: rgba(79,110,247,0.05);
+            box-shadow: 0 20px 50px rgba(79,110,247,0.15);
+        }
+
+    .card-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background: var(--grad);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        margin-bottom: 16px;
+        transition: transform 0.3s;
+    }
+
+    .card:hover .card-icon {
+        transform: scale(1.1) rotate(-5deg);
+    }
+
+    .card h3 {
+        font-family: var(--font);
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        letter-spacing: -0.3px;
+    }
+
+    .card p {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .card-list {
+        list-style: none;
+        margin-top: 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+        .card-list li {
+            font-size: 13px;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.2s, transform 0.2s;
+        }
+
+            .card-list li:hover {
+                color: var(--text);
+                transform: translateX(4px);
+            }
+
+            .card-list li::before {
+                content: '';
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background: var(--grad);
+                flex-shrink: 0;
+            }
+
+    .adv-card {
+        background: rgba(255,255,255,0.025);
+        border: 1px solid var(--card-border);
+        border-radius: 16px;
+        padding: 24px;
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    }
+
+        .adv-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(79,110,247,0.4);
+            box-shadow: 0 15px 40px rgba(79,110,247,0.12);
+        }
+
+    .adv-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        flex-shrink: 0;
+    }
+
+        .adv-icon.blue {
+            background: rgba(79,110,247,0.15);
+        }
+
+        .adv-icon.purple {
+            background: rgba(124,58,237,0.15);
+        }
+
+        .adv-icon.cyan {
+            background: rgba(6,182,212,0.15);
+        }
+
+        .adv-icon.pink {
+            background: rgba(236,72,153,0.15);
+        }
+
+    .adv-body h4 {
+        font-family: var(--font);
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 5px;
+    }
+
+    .adv-body p {
+        color: var(--muted);
+        font-size: 13px;
+    }
+
+    .steps-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+        gap: 0;
+        margin-top: 50px;
+        position: relative;
+    }
+
+        /*.steps-grid::before {
+            content: '';
+            position: absolute;
+            top: 36px;
+            left: 10%;
+            right: 10%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(79,110,247,0.5), transparent);
+        }*/
+
+        /*.steps-grid::before {
+            content: '';
+            position: absolute;
+            top: 60px; 
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(79,110,247,0.5), transparent);
+            z-index: 0;
+        }*/
+
+        .steps-grid::before {
+            content: '';
+            position: absolute;
+            top: 60px; /* adjust later if needed */
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(79,110,247,0.5), transparent);
+            z-index: 1; /* keep it low but NOT 0 */
+        }
+
+    /*.step-card {
+        padding: 32px 24px;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+    }*/
+    .step-card {
+        padding: 32px 24px;
+        text-align: center;
+        position: relative;
+        z-index: 2; /* important */
+    }
+
+    .step-num-wrap {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: 2px solid rgba(79,110,247,0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        background: rgba(79,110,247,0.08);
+        transition: border-color 0.3s, background 0.3s, transform 0.3s;
+        animation: borderPulse 3s ease-in-out infinite;
+        /*position: relative;
+        z-index: 2;*/
+        position: relative;
+        z-index: 3; /* highest */
+        /*background: rgba(79,110,247,0.08);*/
+        background: var(--bg3); /* IMPORTANT: hides line inside circle */
+    }
+
+    .step-card:hover .step-num-wrap {
+        border-color: rgba(79,110,247,0.7);
+        background: rgba(79,110,247,0.15);
+        transform: scale(1.1);
+    }
+
+    .step-n {
+        font-family: var(--font);
+        font-size: 22px;
+        font-weight: 800;
+        background: var(--grad);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .step-card h3 {
+        font-family: var(--font);
+        font-size: 17px;
+        font-weight: 700;
+        margin-bottom: 8px;
+    }
+
+    .step-card p {
+        color: var(--muted);
+        font-size: 13px;
+    }
+
+    .compare-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        margin-top: 50px;
+    }
+
+    .compare-card {
+        border-radius: 20px;
+        padding: 32px;
+    }
+
+        .compare-card.bad {
+            background: rgba(239,68,68,0.05);
+            border: 1px solid rgba(239,68,68,0.2);
+        }
+
+        .compare-card.good {
+            background: rgba(79,110,247,0.06);
+            border: 1px solid rgba(79,110,247,0.3);
+            box-shadow: 0 20px 50px rgba(79,110,247,0.12);
+        }
+
+    .compare-title {
+        font-family: var(--font);
+        font-size: 18px;
+        font-weight: 800;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .compare-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+        .compare-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            color: var(--muted);
+            transition: color 0.2s;
+        }
+
+            .compare-list li:hover {
+                color: var(--text);
+            }
+
+    .xi {
+        color: #ef4444;
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+    .ci {
+        color: #4f6ef7;
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+    .testi-track {
+        display: flex;
+        gap: 20px;
+        margin-top: 50px;
+        animation: scrollTrack 30s linear infinite;
+        width: max-content;
+    }
+
+        .testi-track:hover {
+            animation-play-state: paused;
+        }
+
+    .testi-card {
+        background: rgba(255,255,255,0.03);
+        border: 1px solid var(--card-border);
+        border-radius: 16px;
+        padding: 24px;
+        min-width: 300px;
+        flex-shrink: 0;
+    }
+
+    .testi-stars {
+        color: #f59e0b;
+        font-size: 14px;
+        margin-bottom: 12px;
+    }
+
+    .testi-text {
+        font-size: 14px;
+        color: var(--muted);
+        font-style: italic;
+        line-height: 1.7;
+        margin-bottom: 16px;
+    }
+
+    .testi-author {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .testi-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--grad);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: 700;
+        color: white;
+        font-family: var(--font);
+    }
+
+    .testi-info h5 {
+        font-size: 13px;
+        font-weight: 600;
+        font-family: var(--font);
+    }
+
+    .testi-info span {
+        font-size: 11px;
+        color: var(--muted2);
+    }
+
+    .integ-card {
+        background: rgba(255,255,255,0.025);
+        border: 1px solid var(--card-border);
+        border-radius: 14px;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        transition: transform 0.3s, border-color 0.3s;
+    }
+
+        .integ-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(79,110,247,0.4);
+        }
+
+    .integ-icon {
+        font-size: 26px;
+    }
+
+    .integ-card span {
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .ind-card {
+        background: rgba(255,255,255,0.025);
+        border: 1px solid var(--card-border);
+        border-radius: 16px;
+        padding: 30px 20px;
+        text-align: center;
+        transition: transform 0.3s, border-color 0.3s, background 0.3s;
+    }
+
+        .ind-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: rgba(79,110,247,0.4);
+            background: rgba(79,110,247,0.06);
+        }
+
+    .ind-icon {
+        font-size: 36px;
+        margin-bottom: 12px;
+        display: block;
+    }
+
+    .ind-card h4 {
+        font-family: var(--font);
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+    .ind-card p {
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 4px;
+    }
+
+    .report-card {
+        background: rgba(255,255,255,0.025);
+        border: 1px solid var(--card-border);
+        border-radius: 14px;
+        padding: 22px;
+        transition: transform 0.3s, border-color 0.3s;
+    }
+
+        .report-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(79,110,247,0.4);
+        }
+
+    .report-icon {
+        font-size: 28px;
+        margin-bottom: 12px;
+        display: block;
+    }
+
+    .report-card h4 {
+        font-family: var(--font);
+        font-size: 15px;
+        font-weight: 700;
+        margin-bottom: 6px;
+    }
+
+    .report-card p {
+        color: var(--muted);
+        font-size: 12px;
+    }
+
+    .benefit-card {
+        background: rgba(255,255,255,0.025);
+        border: 1px solid var(--card-border);
+        border-radius: 16px;
+        padding: 32px 24px;
+        text-align: center;
+        transition: transform 0.35s, border-color 0.35s, background 0.35s, box-shadow 0.35s;
+    }
+
+        .benefit-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(79,110,247,0.5);
+            background: rgba(79,110,247,0.06);
+            box-shadow: 0 20px 50px rgba(79,110,247,0.12);
+        }
+
+    .benefit-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 14px;
+        background: var(--grad);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        margin: 0 auto 18px;
+        transition: transform 0.3s;
+    }
+
+    .benefit-card:hover .benefit-icon {
+        transform: scale(1.12) rotate(-6deg);
+    }
+
+    .benefit-card h3 {
+        font-family: var(--font);
+        font-size: 17px;
+        font-weight: 700;
+        margin-bottom: 8px;
+    }
+
+    .benefit-card p {
+        color: var(--muted);
+        font-size: 13px;
+    }
+
+    .final-cta {
+        background: var(--bg2);
+        text-align: center;
+        padding: 100px 5%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .cta-orb1 {
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        background: #4f6ef7;
+        border-radius: 50%;
+        filter: blur(100px);
+        opacity: 0.12;
+        top: -100px;
+        left: -100px;
+    }
+
+    .cta-orb2 {
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        background: #7c3aed;
+        border-radius: 50%;
+        filter: blur(100px);
+        opacity: 0.12;
+        bottom: -100px;
+        right: -100px;
+    }
+
+    .final-cta h2 {
+        font-family: var(--font);
+        font-size: clamp(32px,5vw,56px);
+        font-weight: 800;
+        letter-spacing: -1px;
+        position: relative;
+    }
+
+    .final-cta p {
+        color: var(--muted);
+        font-size: 17px;
+        margin: 16px auto 36px;
+        max-width: 500px;
+        position: relative;
+    }
+
+    .cta-btns {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        position: relative;
+        flex-wrap: wrap;
+    }
+
+    footer {
+        background: #05060a;
+        padding: 60px 5% 30px;
+        border-top: 0.5px solid var(--card-border);
+    }
+
+    .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 40px;
+        margin-bottom: 40px;
+    }
+
+    .footer-brand p {
+        color: var(--muted);
+        font-size: 13px;
+        margin-top: 10px;
+        max-width: 260px;
+        line-height: 1.8;
+    }
+
+    .footer-col h5 {
+        font-family: var(--font);
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 16px;
+        background: var(--grad);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .footer-col ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+        .footer-col ul li a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.2s;
+        }
+
+            .footer-col ul li a:hover {
+                color: var(--text);
+            }
+
+    .footer-bottom {
+        border-top: 0.5px solid var(--card-border);
+        padding-top: 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: var(--muted2);
+        font-size: 12px;
+    }
+
+    @@media (max-width:768px) {
+        .hero-bullets {
+            grid-template-columns: 1fr;
+        }
+
+        .hero-stats {
+            gap: 20px;
+        }
+
+        .compare-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .footer-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .nav-links {
+            display: none;
+        }
+
+        .steps-grid::before {
+            display: none;
+        }
+    }
+</style>
+
+
+<!-- HERO -->
+<section class="hero">
+    <div class="mesh-bg">
+        <div class="mesh-orb orb1"></div>
+        <div class="mesh-orb orb2"></div>
+        <div class="mesh-orb orb3"></div>
+    </div>
+    <div class="hero-content">
+        <div class="hero-badge"><span class="badge-dot"></span> Smart CRM for Growing Sales Teams</div>
+        <h1>Simple CRM Software<br>for <span class="grad-text">Sales Teams</span></h1>
+        <p>DivineCRM is a powerful, simple and mobile-friendly CRM designed to help businesses capture leads, manage follow-ups, track sales and close deals faster.</p>
+        <div class="hero-bullets">
+            <div class="hero-bullet"><span class="bullet-check">✓</span> Capture leads instantly</div>
+            <div class="hero-bullet"><span class="bullet-check">✓</span> Never miss follow-ups</div>
+            <div class="hero-bullet"><span class="bullet-check">✓</span> Track sales pipeline</div>
+            <div class="hero-bullet"><span class="bullet-check">✓</span> Manage team performance</div>
+        </div>
+        <div class="cta-row">
+            <a href="#demo" class="btn-primary">Book Free Demo</a>
+            <a href="#trial" class="btn-outline">Start Free Trial</a>
+        </div>
+        <div class="hero-stats">
+            <div class="stat-item"><span class="stat-num">4x</span><div class="stat-label">Faster deal closing</div></div>
+            <div class="stat-item"><span class="stat-num">0%</span><div class="stat-label">Lead leakage</div></div>
+            <div class="stat-item"><span class="stat-num">100%</span><div class="stat-label">Mobile ready</div></div>
+            <div class="stat-item"><span class="stat-num">500+</span><div class="stat-label">Happy businesses</div></div>
+        </div>
+    </div>
+</section>
+<!-- WHY -->
+<section class="sec-dark" id="why">
+    <div class="tc reveal">
+        <div class="section-tag">Why DivineCRM</div>
+        <h2 class="section-title">Why Businesses Choose <span class="grad-text">DivineCRM</span></h2>
+        <p class="section-sub mx">Built for simplicity, speed and performance across all industries.</p>
+    </div>
+    <div class="grid g4">
+        <div class="adv-card reveal d1"><div class="adv-icon blue">🖥️</div><div class="adv-body"><h4>Easy to use interface</h4><p>Clean, intuitive design your team will love from day one.</p></div></div>
+        <div class="adv-card reveal d2"><div class="adv-icon purple">📱</div><div class="adv-body"><h4>Mobile app for field teams</h4><p>Android app lets your field sales team work from anywhere.</p></div></div>
+        <div class="adv-card reveal d3"><div class="adv-icon cyan">⚡</div><div class="adv-body"><h4>Real time data access</h4><p>Live dashboards and instant updates so nothing slips through.</p></div></div>
+        <div class="adv-card reveal d4"><div class="adv-icon pink">⚙️</div><div class="adv-body"><h4>Customizable workflows</h4><p>Adapt DivineCRM to fit your unique sales process perfectly.</p></div></div>
+    </div>
+</section>
+<!-- FEATURES -->
+<section id="features">
+    <div class="tc reveal">
+        <div class="section-tag">Features</div>
+        <h2 class="section-title">Powerful CRM Features to<br><span class="grad-text">Grow Your Business</span></h2>
+    </div>
+    <div class="grid g4">
+        <div class="card reveal d1">
+            <div class="card-icon">🎯</div>
+            <h3>Lead Management</h3>
+            <p>Capture leads from multiple sources and manage them effectively.</p>
+            <ul class="card-list">
+                <li>Lead capture from website</li>
+                <li>Lead assignment to sales team</li>
+                <li>Lead status tracking</li>
+                <li>Lead source analysis</li>
+            </ul>
+        </div>
+        <div class="card reveal d2">
+            <div class="card-icon">🔔</div>
+            <h3>Follow-up Management</h3>
+            <p>Ensure every opportunity is followed up properly and on time.</p>
+            <ul class="card-list">
+                <li>Automated follow-up reminders</li>
+                <li>Call scheduling</li>
+                <li>Meeting tracking</li>
+                <li>Activity timeline</li>
+            </ul>
+        </div>
+        <div class="card reveal d3">
+            <div class="card-icon">📈</div>
+            <h3>Sales Pipeline</h3>
+            <p>Track opportunities and close deals faster with full visibility.</p>
+            <ul class="card-list">
+                <li>Sales stage tracking</li>
+                <li>Pipeline visibility</li>
+                <li>Deal progress tracking</li>
+                <li>Sales forecasting</li>
+            </ul>
+        </div>
+        <div class="card reveal d4">
+            <div class="card-icon">📲</div>
+            <h3>Mobile CRM</h3>
+            <p>Manage customers from anywhere, even without internet.</p>
+            <ul class="card-list">
+                <li>Android mobile app</li>
+                <li>Field sales tracking</li>
+                <li>Instant updates</li>
+                <li>Offline support</li>
+            </ul>
+        </div>
+    </div>
+</section>
+<!-- HOW IT WORKS -->
+<section class="sec-darker">
+    <div class="tc reveal">
+        <div class="section-tag">How It Works</div>
+        <h2 class="section-title">Simple <span class="grad-text">4 Step Process</span></h2>
+    </div>
+    <div class="steps-grid">
+        <div class="step-card reveal d1">
+            <div class="step-num-wrap"><span class="step-n">1</span></div>
+            <h3>Capture Leads</h3>
+            <p>Collect leads from your website, social media and all sources automatically.</p>
+        </div>
+        <div class="step-card reveal d2">
+            <div class="step-num-wrap"><span class="step-n">2</span></div>
+            <h3>Assign to Team</h3>
+            <p>Instantly route leads to the right sales team member every time.</p>
+        </div>
+        <div class="step-card reveal d3">
+            <div class="step-num-wrap"><span class="step-n">3</span></div>
+            <h3>Track Follow-ups</h3>
+            <p>Automated reminders ensure no lead is ever ignored or forgotten.</p>
+        </div>
+        <div class="step-card reveal d4">
+            <div class="step-num-wrap"><span class="step-n">4</span></div>
+            <h3>Close Deals</h3>
+            <p>Generate reports, track revenue and celebrate every closed deal.</p>
+        </div>
+    </div>
+</section>
+<!-- BUSINESS BENEFITS -->
+<section class="sec-dark">
+    <div class="tc reveal">
+        <div class="section-tag">Business Impact</div>
+        <h2 class="section-title">Improve Productivity and<br><span class="grad-text">Sales Performance</span></h2>
+        <p class="section-sub mx">DivineCRM helps businesses improve sales efficiency and customer engagement.</p>
+    </div>
+    <div class="grid g4">
+        <div class="benefit-card reveal d1">
+            <div class="benefit-icon">📊</div>
+            <h3>Increase conversion rates</h3>
+            <p>Convert more leads into paying customers with systematic follow-ups.</p>
+        </div>
+        <div class="benefit-card reveal d2">
+            <div class="benefit-icon">👥</div>
+            <h3>Improve team productivity</h3>
+            <p>Eliminate manual work so your team can focus entirely on selling.</p>
+        </div>
+        <div class="benefit-card reveal d3">
+            <div class="benefit-icon">🚫</div>
+            <h3>Reduce lead leakage</h3>
+            <p>Zero leads fall through the cracks with automated tracking.</p>
+        </div>
+        <div class="benefit-card reveal d4">
+            <div class="benefit-icon">💎</div>
+            <h3>Enhance customer experience</h3>
+            <p>Deliver timely, personalized responses that customers love.</p>
+        </div>
+    </div>
+</section>
+<!-- INDUSTRIES -->
+<section id="industries">
+    <div class="tc reveal">
+        <div class="section-tag">Industries</div>
+        <h2 class="section-title">Built for <span class="grad-text">Every Industry</span></h2>
+        <p class="section-sub mx">DivineCRM works across multiple industries with tailored workflows.</p>
+    </div>
+    <div class="grid g4">
+        <div class="ind-card reveal d1"><span class="ind-icon">🏢</span><h4>Real Estate</h4><p>Manage property leads and client follow-ups</p></div>
+        <div class="ind-card reveal d2"><span class="ind-icon">🏭</span><h4>Manufacturing</h4><p>Track B2B sales cycles and dealer networks</p></div>
+        <div class="ind-card reveal d3"><span class="ind-icon">🚚</span><h4>Logistics</h4><p>Manage freight clients and service contracts</p></div>
+        <div class="ind-card reveal d4"><span class="ind-icon">🎓</span><h4>Education</h4><p>Track admissions enquiries and enrollments</p></div>
+    </div>
+</section>
+<!-- REPORTS -->
+<section class="sec-darker">
+    <div class="tc reveal">
+        <div class="section-tag">Analytics</div>
+        <h2 class="section-title">Make <span class="grad-text">Data Driven</span> Decisions</h2>
+        <p class="section-sub mx">DivineCRM provides powerful reporting features to track and improve performance.</p>
+    </div>
+    <div class="grid g4">
+        <div class="report-card reveal d1"><span class="report-icon">📉</span><h4>Sales Performance</h4><p>Track team-wise revenue and conversion rates in real time.</p></div>
+        <div class="report-card reveal d2"><span class="report-icon">👤</span><h4>Team Productivity</h4><p>Monitor call counts, activities and meeting completion rates.</p></div>
+        <div class="report-card reveal d3"><span class="report-icon">🔄</span><h4>Lead Conversion</h4><p>Understand which sources bring the highest quality leads.</p></div>
+        <div class="report-card reveal d4"><span class="report-icon">📋</span><h4>Activity Reports</h4><p>Full timeline of every interaction across your sales team.</p></div>
+    </div>
+</section>
+<!-- INTEGRATIONS -->
+<section class="sec-dark">
+    <div class="tc reveal">
+        <div class="section-tag">Integrations</div>
+        <h2 class="section-title">Connect DivineCRM With<br><span class="grad-text">Your Tools</span></h2>
+    </div>
+    <div class="grid g4">
+        <div class="integ-card reveal d1"><span class="integ-icon">📧</span><span>Email integration</span></div>
+        <div class="integ-card reveal d2"><span class="integ-icon">📅</span><span>Google Calendar</span></div>
+        <div class="integ-card reveal d3"><span class="integ-icon">🔔</span><span>Mobile notifications</span></div>
+        <div class="integ-card reveal d4"><span class="integ-icon">🔗</span><span>Custom API support</span></div>
+    </div>
+</section>
+<!-- VS EXCEL -->
+<section id="compare">
+    <div class="tc reveal">
+        <div class="section-tag">Why Switch</div>
+        <h2 class="section-title">Stop Managing Leads in <span class="grad-text">Spreadsheets</span></h2>
+        <p class="section-sub mx">Excel was never built for sales. DivineCRM is.</p>
+    </div>
+    <div class="compare-grid">
+        <div class="compare-card bad reveal reveal-left">
+            <div class="compare-title"><span style="font-size:22px;">📊</span> Excel Problems</div>
+            <ul class="compare-list">
+                <li><span class="xi">✗</span> No follow-up reminders</li>
+                <li><span class="xi">✗</span> No team visibility</li>
+                <li><span class="xi">✗</span> Manual updates only</li>
+                <li><span class="xi">✗</span> Data duplication issues</li>
+            </ul>
+        </div>
+        <div class="compare-card good reveal reveal-right">
+            <div class="compare-title"><span style="font-size:22px;">✨</span> DivineCRM Advantages</div>
+            <ul class="compare-list">
+                <li><span class="ci">✓</span> Automated follow-ups</li>
+                <li><span class="ci">✓</span> Real time team visibility</li>
+                <li><span class="ci">✓</span> Centralized data</li>
+                <li><span class="ci">✓</span> Smart reporting</li>
+            </ul>
+        </div>
+    </div>
+</section>
+<!-- TESTIMONIALS -->
+<section class="sec-dark">
+    <div class="tc reveal">
+        <div class="section-tag">Testimonials</div>
+        <h2 class="section-title">What Our <span class="grad-text">Customers Say</span></h2>
+        <p class="section-sub mx">DivineCRM is trusted by growing businesses across India.</p>
+    </div>
+    <div style="overflow:hidden; margin-top:50px;">
+        <div class="testi-track">
+            <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"DivineCRM transformed how we manage our sales team. Follow-up rates improved dramatically within the first month."</p><div class="testi-author"><div class="testi-avatar">RS</div><div class="testi-info"><h5>Rahul Sharma</h5><span>Sales Head, Real Estate Firm</span></div></div></div>
+            <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"We reduced lead leakage to almost zero. The mobile app is a game changer for our field sales team on the move."</p><div class="testi-author"><div class="testi-avatar">PK</div><div class="testi-info"><h5>Priya Kaur</h5><span>Director, Logistics Company</span></div></div></div>
+            <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"Moving from Excel to DivineCRM was the best decision we made. Better collaboration and zero data loss."</p><div class="testi-author"><div class="testi-avatar">AM</div><div class="testi-info"><h5>Arjun Mehta</h5><span>Owner, Manufacturing SME</span></div></div></div>
+            <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"Productivity improved massively across our sales department. The reports feature alone is worth every rupee."</p><div class="testi-author"><div class="testi-avatar">SD</div><div class="testi-info"><h5>Sunita Desai</h5><span>VP Sales, Education Group</span></div></div></div>
+            <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"Onboarding was incredibly smooth. Our team of 30 was fully up and running in under a week."</p><div class="testi-author"><div class="testi-avatar">VR</div><div class="testi-info"><h5>Vijay Rao</h5><span>CEO, Technology Startup</span></div></div></div>
+            <!-- Duplicates for infinite scroll -->
+            <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"DivineCRM transformed how we manage our sales team. Follow-up rates improved dramatically within the first month."</p><div class="testi-author"><div class="testi-avatar">RS</div><div class="testi-info"><h5>Rahul Sharma</h5><span>Sales Head, Real Estate Firm</span></div></div></div>
+            <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"We reduced lead leakage to almost zero. The mobile app is a game changer for our field sales team on the move."</p><div class="testi-author"><div class="testi-avatar">PK</div><div class="testi-info"><h5>Priya Kaur</h5><span>Director, Logistics Company</span></div></div></div>
+            <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"Moving from Excel to DivineCRM was the best decision we made. Better collaboration and zero data loss."</p><div class="testi-author"><div class="testi-avatar">AM</div><div class="testi-info"><h5>Arjun Mehta</h5><span>Owner, Manufacturing SME</span></div></div></div>
+            <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"Productivity improved massively across our sales department. The reports feature alone is worth every rupee."</p><div class="testi-author"><div class="testi-avatar">SD</div><div class="testi-info"><h5>Sunita Desai</h5><span>VP Sales, Education Group</span></div></div></div>
+            <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"Onboarding was incredibly smooth. Our team of 30 was fully up and running in under a week."</p><div class="testi-author"><div class="testi-avatar">VR</div><div class="testi-info"><h5>Vijay Rao</h5><span>CEO, Technology Startup</span></div></div></div>
+        </div>
+    </div>
+</section>
+<!-- FINAL CTA -->
+<section class="final-cta" id="demo">
+    <div class="cta-orb1"></div>
+    <div class="cta-orb2"></div>
+    <div class="reveal">
+        <div class="section-tag" style="margin-bottom:20px;">Get Started Today</div>
+        <h2>Ready to <span class="grad-text">Grow Your Sales?</span></h2>
+        <p>Start using DivineCRM today and manage your customers efficiently. No credit card required.</p>
+        <div class="cta-btns">
+            <a href="#" class="btn-primary" style="font-size:16px; padding:16px 36px;">Book Free Demo</a>
+            <a href="#" class="btn-outline" style="font-size:16px; padding:16px 36px;">Start Free Trial</a>
+        </div>
+    </div>
+</section>
+<!-- FOOTER -->
+
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+
+    window.addEventListener('scroll', () => {
+        const nav = document.getElementById('navbar');
+        nav.style.background = window.scrollY > 50 ? 'rgba(8,9,13,0.97)' : 'rgba(8,9,13,0.85)';
+    });
+
+    document.querySelectorAll('.card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const r = card.getBoundingClientRect();
+            const x = ((e.clientX - r.left) / r.width) * 100;
+            const y = ((e.clientY - r.top) / r.height) * 100;
+            card.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(79,110,247,0.1) 0%, rgba(255,255,255,0.03) 60%)`;
+        });
+        card.addEventListener('mouseleave', () => { card.style.background = 'rgba(255,255,255,0.03)'; });
+    });
+</script>
