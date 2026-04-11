@@ -144,6 +144,11 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\footer_logo.png" />
+    <Content Include="Content\Images\logo_name_only_light.svg" />
+    <Content Include="Content\Images\logo_only_light %281%29.svg" />
+    <Content Include="Content\Images\logo_only_light.svg" />
+    <Content Include="Content\Images\logo_with_name_dark.svg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
