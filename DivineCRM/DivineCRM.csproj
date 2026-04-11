@@ -150,6 +150,7 @@
     <Content Include="Content\Images\logo_only_light %281%29.svg" />
     <Content Include="Content\Images\logo_only_light.svg" />
     <Content Include="Content\Images\logo_with_name_dark.svg" />
+    <Content Include="Content\LayoutMain.css" />
     <Content Include="Content\Login.css" />
     <Content Include="Content\SignUp.css" />
     <Content Include="favicon.ico" />

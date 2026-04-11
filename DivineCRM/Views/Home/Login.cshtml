@@ -25,26 +25,81 @@
         <div class="error-banner" id="errorBanner">
             Invalid credentials. Please check your name and password.
         </div>
+        @*<form class="auth-form" id="loginForm" novalidate>
+                <!-- Full Name -->
+                <div class="field-group">
+                    <label class="field-label" for="fullname">Full Name</label>
+                    <div class="field-wrap">
+
+                        <span class="field-icon"><i class="fa-solid fa-user"></i></span>
+                        <input class="auth-input" type="text" id="fullname" name="fullname" placeholder="Your registered name" autocomplete="name" />
+                    </div>
+                </div>
+                <!-- Password -->
+                <div class="field-group">
+                    <label class="field-label" for="password">Password</label>
+                    <div class="field-wrap">
+
+                        <span class="field-icon"><i class="fa-solid fa-lock"></i></span>
+                        <input class="auth-input" type="password" id="password" name="password" placeholder="Enter your password" autocomplete="current-password" style="padding-right: 42px;" />
+                        <button type="button" class="pwd-toggle" id="pwdToggle" aria-label="Toggle password">👁️</button>
+                    </div>
+                </div>
+                <!-- Extras -->
+                <div class="form-extras">
+                    <label class="remember-wrap">
+                        <input type="checkbox" class="remember-check" id="rememberMe" />
+                        <span>Remember me</span>
+                    </label>
+                    <a href="/Account/ForgotPassword" class="forgot-link">Forgot password?</a>
+                </div>
+                <button type="submit" class="btn-submit" id="loginBtn">
+                    Sign In to DivineCRM →
+                </button>
+                <!-- Trust row -->
+
+                <div class="trust-row">
+                    <div class="trust-badge">
+                        <i class="fa-solid fa-lock"></i>
+                        <span>Secure Login</span>
+                    </div>
+                    <div class="trust-badge">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>256-bit SSL</span>
+                    </div>
+                    <div class="trust-badge">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>500+ Teams</span>
+                    </div>
+                </div>
+            </form>*@
+
         <form class="auth-form" id="loginForm" novalidate>
+
             <!-- Full Name -->
             <div class="field-group">
                 <label class="field-label" for="fullname">Full Name</label>
                 <div class="field-wrap">
-                    @*<span class="field-icon">👤</span>*@
                     <span class="field-icon"><i class="fa-solid fa-user"></i></span>
-                    <input class="auth-input" type="text" id="fullname" name="fullname" placeholder="Your registered name" autocomplete="name" />
+                    <input class="auth-input" type="text" id="fullname" name="fullname"
+                           placeholder="Your registered name" autocomplete="name" />
                 </div>
+                <div class="field-msg" id="name-msg"></div>
             </div>
+
             <!-- Password -->
             <div class="field-group">
                 <label class="field-label" for="password">Password</label>
                 <div class="field-wrap">
-                    @*<span class="field-icon">🔒</span>*@
                     <span class="field-icon"><i class="fa-solid fa-lock"></i></span>
-                    <input class="auth-input" type="password" id="password" name="password" placeholder="Enter your password" autocomplete="current-password" style="padding-right: 42px;" />
-                    <button type="button" class="pwd-toggle" id="pwdToggle" aria-label="Toggle password">👁️</button>
+                    <input class="auth-input" type="password" id="password" name="password"
+                           placeholder="Enter your password" autocomplete="current-password"
+                           style="padding-right: 42px;" />
+                    <button type="button" class="pwd-toggle" id="pwdToggle">👁️</button>
                 </div>
+                <div class="field-msg" id="pwd-msg"></div>
             </div>
+
             <!-- Extras -->
             <div class="form-extras">
                 <label class="remember-wrap">
@@ -53,15 +108,13 @@
                 </label>
                 <a href="/Account/ForgotPassword" class="forgot-link">Forgot password?</a>
             </div>
+
+            <!-- Submit -->
             <button type="submit" class="btn-submit" id="loginBtn">
                 Sign In to DivineCRM →
             </button>
+
             <!-- Trust row -->
-            @*<div class="trust-row">
-            <div class="trust-badge">🔐 Secure Login</div>
-            <div class="trust-badge">🛡️ 256-bit SSL</div>
-            <div class="trust-badge">✅ 500+ Teams</div>
-        </div>*@
             <div class="trust-row">
                 <div class="trust-badge">
                     <i class="fa-solid fa-lock"></i>
@@ -76,6 +129,7 @@
                     <span>500+ Teams</span>
                 </div>
             </div>
+
         </form>
         <div class="auth-divider" style="margin-top: 20px;"><span>New to DivineCRM?</span></div>
         <div class="auth-footer" style="margin-top: 12px;">
@@ -83,7 +137,8 @@
         </div>
     </div>
 </div>
-<script>// Password toggle
+@*<script>
+    // Password toggle
     const pwdInput = document.getElementById('password');
     document.getElementById('pwdToggle').addEventListener('click', function () {
         const show = pwdInput.type === 'password';
@@ -127,6 +182,87 @@
             btn.textContent = '✓ Signed In!';
             btn.style.background = 'linear-gradient(135deg,#10b981,#059669)';
             btn.style.animation = 'successPop 0.4s ease';
+        }, 1200);
+    });
+</script>*@
+<script>
+    // Password toggle
+    const pwdInput = document.getElementById('password');
+    document.getElementById('pwdToggle').addEventListener('click', function () {
+        const show = pwdInput.type === 'password';
+        pwdInput.type = show ? 'text' : 'password';
+        this.textContent = show ? '🙈' : '👁️';
+    });
+
+    // Helper functions
+    function showMsg(id, text) {
+        const el = document.getElementById(id);
+        el.textContent = text;
+        el.className = 'field-msg show err';
+    }
+
+    function clearMsg(id) {
+        const el = document.getElementById(id);
+        el.textContent = '';
+        el.className = 'field-msg';
+    }
+
+    // Clear error on typing
+    document.getElementById('fullname').addEventListener('input', function () {
+        clearMsg('name-msg');
+        this.classList.remove('invalid');
+    });
+
+    document.getElementById('password').addEventListener('input', function () {
+        clearMsg('pwd-msg');
+        this.classList.remove('invalid');
+    });
+
+    // Submit handler
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const btn = document.getElementById('loginBtn');
+        const nameInput = document.getElementById('fullname');
+        const pwdInput = document.getElementById('password');
+
+        let isValid = true;
+
+        // Clear previous errors
+        clearMsg('name-msg');
+        clearMsg('pwd-msg');
+
+        nameInput.classList.remove('invalid');
+        pwdInput.classList.remove('invalid');
+
+        // Name validation
+        if (!nameInput.value.trim()) {
+            showMsg('name-msg', 'Please enter your name');
+            nameInput.classList.add('invalid');
+            isValid = false;
+        }
+
+        // Password validation
+        if (!pwdInput.value.trim()) {
+            showMsg('pwd-msg', 'Please enter your password');
+            pwdInput.classList.add('invalid');
+            isValid = false;
+        }
+
+        // Stop if invalid
+        if (!isValid) return;
+
+        // Success flow
+        btn.textContent = 'Signing in…';
+        btn.disabled = true;
+
+        // 👉 Connect to backend here
+        // this.submit();
+
+        // Demo success
+        setTimeout(function () {
+            btn.textContent = '✓ Signed In!';
+            btn.style.background = 'linear-gradient(135deg,#10b981,#059669)';
         }, 1200);
     });
 </script>

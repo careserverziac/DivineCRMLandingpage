@@ -22,7 +22,7 @@
         @*<span class="auth-logo">✦ DivineCRM</span>*@
         <p class="auth-logo-sub">Smart CRM for Growing Sales Teams</p>
         <h1 class="auth-title">Create Your <span class="grad-text">Account</span></h1>
-        <p class="auth-sub">Join 500+ businesses growing with DivineCRM</p>
+        <p class="auth-sub">Join businesses growing with DivineCRM</p>
         <form class="auth-form" id="signupForm" novalidate>
             <!-- Full Name -->
             <div class="field-group">
@@ -79,7 +79,7 @@
         </div>
     </div>
 </div>
-<script>// Password toggle
+@*<script>// Password toggle
     const pwdInput = document.getElementById('password');
     document.getElementById('pwdToggle').addEventListener('click', function () {
         const show = pwdInput.type === 'password';
@@ -154,16 +154,225 @@
     });
 
     // Submit
+    //document.getElementById('signupForm').addEventListener('submit', function (e) {
+    //    e.preventDefault();
+    //    const btn = document.getElementById('submitBtn');
+    //    btn.textContent = 'Creating account…';
+    //    btn.style.opacity = '0.8';
+    //    // Hook up your controller action here
+    //    // this.submit();
+    //    setTimeout(() => {
+    //        btn.textContent = '✓ Account Created!';
+    //        btn.style.background = 'linear-gradient(135deg,#10b981,#059669)';
+    //    }, 1400);
+    //});
+
     document.getElementById('signupForm').addEventListener('submit', function (e) {
-        e.preventDefault();
-        const btn = document.getElementById('submitBtn');
-        btn.textContent = 'Creating account…';
-        btn.style.opacity = '0.8';
-        // Hook up your controller action here
-        // this.submit();
-        setTimeout(() => {
-            btn.textContent = '✓ Account Created!';
-            btn.style.background = 'linear-gradient(135deg,#10b981,#059669)';
-        }, 1400);
-    });
+    e.preventDefault();
+
+    let isValid = true;
+
+    const name = document.getElementById('fullname');
+    const phone = document.getElementById('phone');
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
+
+    // Name validation
+    if (name.value.trim().length < 3) {
+        name.classList.add('invalid');
+        showMsg('name-msg', 'Please enter your full name', 'err');
+        isValid = false;
+    }
+
+    // Phone validation
+    const ph = phone.value.replace(/\s/g, '');
+    if (!/^\+?[0-9]{8,15}$/.test(ph)) {
+        phone.classList.add('invalid');
+        showMsg('phone-msg', 'Enter a valid phone number', 'err');
+        isValid = false;
+    }
+
+    // Email validation
+    if (!/^[^\s@@]+@@[^\s@@]+\.[^\s@@]+$/.test(email.value)) {
+        email.classList.add('invalid');
+        showMsg('email-msg', 'Enter a valid email address', 'err');
+        isValid = false;
+    }
+
+    // Password validation
+    if (password.value.length < 8) {
+        password.classList.add('invalid');
+        showMsg('email-msg', 'Password must be at least 8 characters', 'err');
+        isValid = false;
+    }
+
+    // ❌ Stop if invalid
+    if (!isValid) return;
+
+    // ✅ Continue only if valid
+    const btn = document.getElementById('submitBtn');
+    btn.textContent = 'Creating account…';
+    btn.style.opacity = '0.8';
+
+    setTimeout(() => {
+        btn.textContent = '✓ Account Created!';
+        btn.style.background = 'linear-gradient(135deg,#10b981,#059669)';
+    }, 1400);
+});
+</script>*@
+<script>
+// Password toggle
+const pwdInput = document.getElementById('password');
+document.getElementById('pwdToggle').addEventListener('click', function () {
+    const show = pwdInput.type === 'password';
+    pwdInput.type = show ? 'text' : 'password';
+    this.textContent = show ? '🙈' : '👁️';
+});
+
+// Password strength
+pwdInput.addEventListener('input', function () {
+    const val = this.value;
+    const bar = document.getElementById('strengthBar');
+    const lbl = document.getElementById('strengthLabel');
+
+    let score = 0;
+    if (val.length >= 8) score++;
+    if (/[A-Z]/.test(val)) score++;
+    if (/[0-9]/.test(val)) score++;
+    if (/[^A-Za-z0-9]/.test(val)) score++;
+
+    const levels = [
+        { w: '0%', bg: 'transparent', text: '' },
+        { w: '25%', bg: '#ef4444', text: 'Weak' },
+        { w: '50%', bg: '#f59e0b', text: 'Fair' },
+        { w: '75%', bg: '#3b82f6', text: 'Good' },
+        { w: '100%', bg: '#10b981', text: 'Strong' },
+    ];
+
+    const l = levels[score];
+    bar.style.width = l.w;
+    bar.style.background = l.bg;
+    lbl.textContent = l.text;
+    lbl.style.color = l.bg;
+});
+
+// Message helpers
+function showMsg(id, text, type) {
+    const el = document.getElementById(id);
+    el.textContent = text;
+    el.className = 'field-msg show ' + type;
+}
+
+function clearMsg(id) {
+    const el = document.getElementById(id);
+    el.textContent = '';
+    el.className = 'field-msg';
+}
+
+// Full name validation
+document.getElementById('fullname').addEventListener('blur', function () {
+    if (this.value.trim().length < 3) {
+        this.classList.remove('valid');
+        this.classList.add('invalid');
+        showMsg('name-msg', 'Please enter your full name', 'err');
+    } else {
+        this.classList.remove('invalid');
+        this.classList.add('valid');
+        clearMsg('name-msg');
+    }
+});
+
+// Phone validation
+document.getElementById('phone').addEventListener('blur', function () {
+    const ph = this.value.replace(/\s/g, '');
+    if (!/^\+?[0-9]{8,15}$/.test(ph)) {
+        this.classList.remove('valid');
+        this.classList.add('invalid');
+        showMsg('phone-msg', 'Enter a valid phone number', 'err');
+    } else {
+        this.classList.remove('invalid');
+        this.classList.add('valid');
+        clearMsg('phone-msg');
+    }
+});
+
+// Email validation (FIXED REGEX)
+document.getElementById('email').addEventListener('blur', function () {
+    if (!/^[^\s@@]+@@[^\s@@]+\.[^\s@@]+$/.test(this.value)) {
+        this.classList.remove('valid');
+        this.classList.add('invalid');
+        showMsg('email-msg', 'Enter a valid email address', 'err');
+    } else {
+        this.classList.remove('invalid');
+        this.classList.add('valid');
+        showMsg('email-msg', 'Looks good!', 'ok');
+    }
+});
+
+// Password validation (on blur)
+document.getElementById('password').addEventListener('blur', function () {
+    if (this.value.length < 8) {
+        this.classList.remove('valid');
+        this.classList.add('invalid');
+        showMsg('password-msg', 'Password must be at least 8 characters', 'err');
+    } else {
+        this.classList.remove('invalid');
+        this.classList.add('valid');
+        clearMsg('password-msg');
+    }
+});
+
+// Submit validation
+document.getElementById('signupForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    let isValid = true;
+
+    const name = document.getElementById('fullname');
+    const phone = document.getElementById('phone');
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
+
+    // Name
+    if (name.value.trim().length < 3) {
+        name.classList.add('invalid');
+        showMsg('name-msg', 'Please enter your full name', 'err');
+        isValid = false;
+    }
+
+    // Phone
+    const ph = phone.value.replace(/\s/g, '');
+    if (!/^\+?[0-9]{8,15}$/.test(ph)) {
+        phone.classList.add('invalid');
+        showMsg('phone-msg', 'Enter a valid phone number', 'err');
+        isValid = false;
+    }
+
+    // Email (FIXED)
+    if (!/^[^\s@@]+@@[^\s@@]+\.[^\s@@]+$/.test(email.value)) {
+        email.classList.add('invalid');
+        showMsg('email-msg', 'Enter a valid email address', 'err');
+        isValid = false;
+    }
+
+    // Password (FIXED MESSAGE TARGET)
+    if (password.value.length < 8) {
+        password.classList.add('invalid');
+        showMsg('password-msg', 'Password must be at least 8 characters', 'err');
+        isValid = false;
+    }
+
+    // Stop if invalid
+    if (!isValid) return;
+
+    // Success state
+    const btn = document.getElementById('submitBtn');
+    btn.textContent = 'Creating account…';
+    btn.style.opacity = '0.8';
+
+    setTimeout(() => {
+        btn.textContent = '✓ Account Created!';
+        btn.style.background = 'linear-gradient(135deg,#10b981,#059669)';
+    }, 1400);
+});
 </script>
