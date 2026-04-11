@@ -8,175 +8,180 @@
     <title>@ViewBag.Title - DivineCRM</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="~/Content/Login.css" />
+    <link rel="stylesheet" href="~/Content/SignUp.css" />
+    <link rel="stylesheet" href="~/Content/DivineCRM_Landingpage.css" />
 
- <style>
-     :root {
-         --bg: #08090d;
-         --bg2: #0d0f18;
-         --card-border: rgba(255,255,255,0.07);
-         --accent: #4f6ef7;
-         --grad: linear-gradient(135deg, #4f6ef7, #7c3aed);
-         --text: #f0f2ff;
-         --muted: #8892b0;
-         --muted2: #5a6480;
-         --font: 'Outfit', sans-serif;
-         --font2: 'Plus Jakarta Sans', sans-serif;
-     }
+    <style>
+        :root {
+            --bg: #08090d;
+            --bg2: #0d0f18;
+            --card-border: rgba(255,255,255,0.07);
+            --accent: #4f6ef7;
+            --grad: linear-gradient(135deg, #4f6ef7, #7c3aed);
+            --text: #f0f2ff;
+            --muted: #8892b0;
+            --muted2: #5a6480;
+            --font: 'Outfit', sans-serif;
+            --font2: 'Plus Jakarta Sans', sans-serif;
+        }
 
-     *,
-     *::before,
-     *::after {
-         box-sizing: border-box;
-         margin: 0;
-         padding: 0;
-     }
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-     body {
-         background: var(--bg);
-         color: var(--text);
-         font-family: var(--font2);
-         line-height: 1.7;
-     }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font2);
+            line-height: 1.7;
+        }
 
-     /* NAVBAR */
-     nav {
-         position: fixed;
-         top: 0;
-         left: 0;
-         right: 0;
-         z-index: 100;
-         display: flex;
-         align-items: center;
-         justify-content: space-between;
-         padding: 0 5%;
-         height: 68px;
-         background: rgba(8,9,13,0.85);
-         backdrop-filter: blur(20px);
-         border-bottom: 0.5px solid var(--card-border);
-     }
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            height: 68px;
+            background: rgba(8,9,13,0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 0.5px solid var(--card-border);
+        }
 
-     /* LOGO */
-     .nav-logo a {
-         display: flex;
-         align-items: center;
-         gap: 8px;
-         text-decoration: none;
-     }
+        /* LOGO */
+        .nav-logo a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
 
-     .nav-logo img {
-         display: block;
-         height: 40px;
-         width: auto;
-     }
+        .nav-logo img {
+            display: block;
+            height: 40px;
+            width: auto;
+        }
 
-         .nav-logo img:first-child {
-             height: 35px;
-         }
+            .nav-logo img:first-child {
+                height: 35px;
+            }
 
-     /* NAV LINKS */
-     .nav-links {
-         display: flex;
-         gap: 28px;
-     }
+        /* NAV LINKS */
+        .nav-links {
+            display: flex;
+            gap: 28px;
+        }
 
-         .nav-links a {
-             color: var(--muted);
-             text-decoration: none;
-             font-size: 14px;
-             font-weight: 500;
-         }
+            .nav-links a {
+                color: var(--muted);
+                text-decoration: none;
+                font-size: 14px;
+                font-weight: 500;
+            }
 
-             .nav-links a:hover {
-                 color: var(--text);
-             }
+                .nav-links a:hover {
+                    color: var(--text);
+                }
 
-     /* CTA BUTTON */
-     .nav-cta {
-         background: var(--grad);
-         color: white;
-         padding: 10px 22px;
-         border-radius: 25px;
-         font-size: 14px;
-         font-weight: 600;
-         text-decoration: none;
-     }
+        /* CTA BUTTON */
+        .nav-cta {
+            background: var(--grad);
+            color: white;
+            padding: 10px 22px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+        }
 
-         .nav-cta:hover {
-             color: white;
-             text-decoration:none;
-         }
-         /* FOOTER */
-         footer {
-             background: #05060a;
-             padding: 60px 5% 30px;
-             border-top: 0.5px solid var(--card-border);
-         }
+            .nav-cta:hover {
+                color: white;
+                text-decoration: none;
+            }
+        /* FOOTER */
+        footer {
+            background: #05060a;
+            padding: 60px 5% 30px;
+            border-top: 0.5px solid var(--card-border);
+        }
 
-     .footer-grid {
-         display: grid;
-         grid-template-columns: 2fr 1fr 1fr 1fr;
-         gap: 40px;
-         margin-bottom: 40px;
-     }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
 
-     .footer-brand p {
-         color: var(--muted);
-         font-size: 13px;
-         margin-top: 10px;
-         max-width: 260px;
-     }
+        .footer-brand p {
+            color: var(--muted);
+            font-size: 13px;
+            margin-top: 10px;
+            max-width: 260px;
+        }
 
-     .footer-col h5 {
-         font-family: var(--font);
-         font-size: 14px;
-         font-weight: 700;
-         margin-bottom: 16px;
-         background: var(--grad);
-         -webkit-background-clip: text;
-         -webkit-text-fill-color: transparent;
-     }
+        .footer-col h5 {
+            font-family: var(--font);
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: var(--grad);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-     .footer-col ul {
-         list-style: none;
-         display: flex;
-         flex-direction: column;
-         gap: 10px;
-     }
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
 
-         .footer-col ul li a {
-             color: var(--muted);
-             text-decoration: none;
-             font-size: 13px;
-         }
+            .footer-col ul li a {
+                color: var(--muted);
+                text-decoration: none;
+                font-size: 13px;
+            }
 
-             .footer-col ul li a:hover {
-                 color: var(--text);
-             }
+                .footer-col ul li a:hover {
+                    color: var(--text);
+                }
 
-     .footer-bottom {
-         border-top: 0.5px solid var(--card-border);
-         padding-top: 24px;
-         display: flex;
-         justify-content: space-between;
-         align-items: center;
-         color: var(--muted2);
-         font-size: 12px;
-     }
+        .footer-bottom {
+            border-top: 0.5px solid var(--card-border);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--muted2);
+            font-size: 12px;
+        }
 
-     /* RESPONSIVE */
-     @@media (max-width: 768px) {
-         .footer-grid {
-             grid-template-columns: 1fr 1fr;
-         }
+        /* RESPONSIVE */
+        @@media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
 
-         .nav-links {
-             display: none;
-         }
-     }
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
 
- </style>
- 
 </head>
 <body>
     <nav id="navbar">
