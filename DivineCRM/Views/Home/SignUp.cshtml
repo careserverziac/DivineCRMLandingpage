@@ -1,0 +1,691 @@
+﻿
+@{
+    ViewBag.Title = "SignUp";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+@*<h2>SignUp</h2>*@
+
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+
+    :root {
+        --bg: #08090d;
+        --bg2: #0d0f18;
+        --bg3: #111420;
+        --card-border: rgba(255,255,255,0.07);
+        --accent: #4f6ef7;
+        --accent2: #7c3aed;
+        --accent3: #06b6d4;
+        --grad: linear-gradient(135deg, #4f6ef7, #7c3aed);
+        --text: #f0f2ff;
+        --muted: #8892b0;
+        --muted2: #5a6480;
+        --font: 'Outfit', sans-serif;
+        --font2: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--font2);
+        line-height: 1.7;
+        overflow-x: hidden;
+        min-height: 100vh;
+    }
+
+    @@keyframes fadeUp {
+        from {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @@keyframes float {
+        0%, 100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-16px);
+        }
+    }
+
+    @@keyframes shimmer {
+        0% {
+            background-position: -200% center;
+        }
+
+        100% {
+            background-position: 200% center;
+        }
+    }
+
+    @@keyframes pulse {
+        0%, 100% {
+            box-shadow: 0 0 0 0 rgba(79,110,247,0.4);
+        }
+
+        50% {
+            box-shadow: 0 0 0 12px rgba(79,110,247,0);
+        }
+    }
+
+    @@keyframes rotateBorder {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    @@keyframes inputGlow {
+        from {
+            box-shadow: 0 0 0 0 rgba(79,110,247,0);
+        }
+
+        to {
+            box-shadow: 0 0 18px 2px rgba(79,110,247,0.18);
+        }
+    }
+
+    @@keyframes cardIn {
+        from {
+            opacity: 0;
+            transform: translateY(60px) scale(0.97);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    @@keyframes labelFloat {
+        from {
+            top: 50%;
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        to {
+            top: 6px;
+            font-size: 11px;
+            color: #a5b4ff;
+        }
+    }
+
+    /* Mesh BG */
+    .mesh-bg {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+        z-index: 0;
+    }
+
+    .mesh-orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(90px);
+        opacity: 0.18;
+    }
+
+    .orb1 {
+        width: 600px;
+        height: 600px;
+        background: #4f6ef7;
+        top: -200px;
+        left: -100px;
+        animation: float 9s ease-in-out infinite;
+    }
+
+    .orb2 {
+        width: 500px;
+        height: 500px;
+        background: #7c3aed;
+        top: 0;
+        right: -150px;
+        animation: float 11s ease-in-out infinite reverse;
+    }
+
+    .orb3 {
+        width: 350px;
+        height: 350px;
+        background: #06b6d4;
+        bottom: 0;
+        left: 35%;
+        animation: float 13s ease-in-out infinite;
+    }
+
+    /* Page layout */
+    .auth-page {
+        position: relative;
+        z-index: 1;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 80px 20px 40px;
+    }
+
+    /* Card */
+    .auth-card {
+        background: rgba(13,15,24,0.85);
+        border: 1px solid rgba(79,110,247,0.18);
+        border-radius: 28px;
+        padding: 44px 40px;
+        width: 100%;
+        max-width: 480px;
+        backdrop-filter: blur(24px);
+        position: relative;
+        animation: cardIn 0.7s cubic-bezier(.25,.46,.45,.94) both;
+        box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 0 0.5px rgba(79,110,247,0.12);
+    }
+
+        /* Rotating border accent */
+        .auth-card::before {
+            content: '';
+            position: absolute;
+            inset: -1.5px;
+            border-radius: 29px;
+            padding: 1.5px;
+            background: conic-gradient(from 0deg, #4f6ef7, #7c3aed, #06b6d4, #4f6ef7);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            /*animation: rotateBorder 4s linear infinite;*/
+            opacity: 0.5;
+        }
+
+    /* Logo */
+    .auth-logo {
+        font-family: var(--font);
+        font-size: 22px;
+        font-weight: 800;
+        background: var(--grad);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-align: center;
+        margin-bottom: 6px;
+        display: block;
+    }
+
+    .auth-logo-sub {
+        text-align: center;
+        font-size: 12px;
+        color: var(--muted2);
+        margin-bottom: 28px;
+        letter-spacing: 0.4px;
+    }
+
+    /* Heading */
+    .auth-title {
+        font-family: var(--font);
+        font-size: 26px;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+        margin-bottom: 4px;
+        text-align: center;
+    }
+
+    .grad-text {
+        background: linear-gradient(135deg, #4f6ef7 0%, #a78bfa 40%, #06b6d4 100%);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: shimmer 4s linear infinite;
+    }
+
+    .auth-sub {
+        text-align: center;
+        color: var(--muted);
+        font-size: 13px;
+        margin-bottom: 30px;
+    }
+
+    /* Form */
+    .auth-form {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .field-group {
+        position: relative;
+        animation: fadeUp 0.5s ease both;
+
+    }
+
+        .field-group:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .field-group:nth-child(2) {
+            animation-delay: 0.18s;
+        }
+
+        .field-group:nth-child(3) {
+            animation-delay: 0.26s;
+        }
+
+        .field-group:nth-child(4) {
+            animation-delay: 0.34s;
+        }
+
+    .field-label {
+        display: block;
+        font-size: 12px;
+        font-weight: 600;
+        color: #a5b4ff;
+        margin-bottom: 8px;
+        letter-spacing: 0.3px;
+        text-transform: uppercase;
+    }
+
+    .field-wrap {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+    .field-icon {
+        position: absolute;
+        left: 14px;
+        font-size: 16px;
+        pointer-events: none;
+        z-index: 1;
+        color: var(--muted);
+        transition: color 0.3s;
+    }
+
+    .auth-input {
+        width: 100%;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.09);
+        border-radius: 12px;
+        padding: 14px 14px 14px 42px;
+        font-size: 14px;
+        font-family: var(--font2);
+        color: var(--text);
+        outline: none;
+        transition: border-color 0.3s, background 0.3s, box-shadow 0.3s;
+    }
+
+        .auth-input::placeholder {
+            color: var(--muted2);
+        }
+
+        .auth-input:focus {
+            border-color: rgba(79,110,247,0.6);
+            background: rgba(79,110,247,0.06);
+            box-shadow: 0 0 0 3px rgba(79,110,247,0.12);
+            animation: inputGlow 0.4s ease forwards;
+        }
+
+            .auth-input:focus + .field-icon,
+            .field-wrap:focus-within .field-icon {
+                color: #a5b4ff;
+            }
+
+    /* Password toggle */
+    .pwd-toggle {
+        position: absolute;
+        right: 14px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--muted);
+        font-size: 16px;
+        padding: 0;
+        line-height: 1;
+        transition: color 0.2s;
+        z-index: 1;
+    }
+
+        .pwd-toggle:hover {
+            color: var(--text);
+        }
+
+    /* Strength bar */
+    .strength-wrap {
+        margin-top: 8px;
+    }
+
+    .strength-bar-bg {
+        height: 4px;
+        background: rgba(255,255,255,0.08);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .strength-bar {
+        height: 100%;
+        width: 0%;
+        border-radius: 10px;
+        transition: width 0.4s ease, background 0.4s ease;
+    }
+
+    .strength-label {
+        font-size: 11px;
+        margin-top: 4px;
+        color: var(--muted2);
+        transition: color 0.3s;
+    }
+
+    /* Submit btn */
+    .btn-submit {
+        background: var(--grad);
+        color: white;
+        border: none;
+        border-radius: 14px;
+        padding: 15px;
+        font-family: var(--font);
+        font-size: 15px;
+        font-weight: 700;
+        width: 100%;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+        box-shadow: 0 8px 30px rgba(79,110,247,0.4);
+        animation: fadeUp 0.5s ease 0.42s both, pulse 2.5s 1s infinite;
+        margin-top: 4px;
+        letter-spacing: 0.2px;
+    }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 40px rgba(79,110,247,0.55);
+        }
+
+        .btn-submit:active {
+            transform: scale(0.98);
+        }
+
+    /* Divider */
+    .auth-divider {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 4px 0;
+    }
+
+        .auth-divider::before, .auth-divider::after {
+            content: '';
+            flex: 1;
+            height: 0.5px;
+            background: rgba(255,255,255,0.08);
+        }
+
+        .auth-divider span {
+            color: var(--muted2);
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+    /* Footer link */
+    .auth-footer {
+        text-align: center;
+        font-size: 13px;
+        color: var(--muted);
+        animation: fadeUp 0.5s ease 0.55s both;
+    }
+
+        .auth-footer a {
+            color: #a5b4ff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+            .auth-footer a:hover {
+                color: var(--text);
+            }
+
+    /* Terms */
+    .terms-text {
+        text-align: center;
+        font-size: 11px;
+        color: var(--muted2);
+        animation: fadeUp 0.5s ease 0.5s both;
+        line-height: 1.6;
+    }
+
+        .terms-text a {
+            color: #a5b4ff;
+            text-decoration: none;
+        }
+
+    /* Input valid/invalid states */
+    .auth-input.valid {
+        border-color: rgba(16,185,129,0.5);
+    }
+
+    .auth-input.invalid {
+        border-color: rgba(239,68,68,0.5);
+    }
+
+    .field-msg {
+        font-size: 11px;
+        margin-top: 5px;
+        display: none;
+    }
+
+        .field-msg.show {
+            display: block;
+        }
+
+        .field-msg.err {
+            color: #f87171;
+        }
+
+        .field-msg.ok {
+            color: #34d399;
+        }
+
+    .signup-logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 6px;
+    }
+
+        .signup-logo img {
+            height: 36px;
+            width: auto;
+        }
+
+            .signup-logo img:first-child {
+                height: 30px; /* icon smaller */
+            }
+
+    @@media (max-width: 520px) {
+        .auth-card {
+            padding: 32px 22px;
+            border-radius: 20px;
+        }
+
+        .auth-title {
+            font-size: 22px;
+        }
+    }
+</style>
+<div class="mesh-bg">
+    <div class="mesh-orb orb1"></div>
+    <div class="mesh-orb orb2"></div>
+    <div class="mesh-orb orb3"></div>
+</div>
+<div class="auth-page">
+    <div class="auth-card">
+        <div class="signup-logo">
+            <img src="~/Content/Images/logo_only_light (1).svg" alt="Logo Icon">
+            <img src="~/Content/Images/logo_name_only_light.svg" alt="Logo Text">
+        </div>
+        @*<span class="auth-logo">✦ DivineCRM</span>*@
+        <p class="auth-logo-sub">Smart CRM for Growing Sales Teams</p>
+        <h1 class="auth-title">Create Your <span class="grad-text">Account</span></h1>
+        <p class="auth-sub">Join 500+ businesses growing with DivineCRM</p>
+        <form class="auth-form" id="signupForm" novalidate>
+            <!-- Full Name -->
+            <div class="field-group">
+                <label class="field-label" for="fullname">Full Name</label>
+                <div class="field-wrap">
+                    @*<span class="field-icon">👤</span>*@
+                    <span class="field-icon"><i class="fa-solid fa-user"></i></span>
+                    <input class="auth-input" type="text" id="fullname" name="fullname" placeholder="Enter Your Full Name" autocomplete="name" />
+                </div>
+                <div class="field-msg" id="name-msg"></div>
+            </div>
+            <!-- Phone -->
+            <div class="field-group">
+                <label class="field-label" for="phone">Phone Number</label>
+                <div class="field-wrap">
+                    @*<span class="field-icon">📱</span>*@
+                    <span class="field-icon"><i class="fa-solid fa-phone"></i></span>
+                    <input class="auth-input" type="tel" id="phone" name="phone" placeholder="Enter your Phone number" autocomplete="tel" />
+                </div>
+                <div class="field-msg" id="phone-msg"></div>
+            </div>
+            <!-- Email -->
+            <div class="field-group">
+                <label class="field-label" for="email">Email Address</label>
+                <div class="field-wrap">
+                    @*<span class="field-icon">✉️</span>*@
+                    <span class="field-icon"><i class="fa-solid fa-envelope"></i></span>
+                    <input class="auth-input" type="email" id="email" name="email" placeholder="Enter Your Email" autocomplete="email" />
+                </div>
+                <div class="field-msg" id="email-msg"></div>
+            </div>
+            <!-- Password -->
+            <div class="field-group">
+                <label class="field-label" for="password">Password</label>
+                <div class="field-wrap">
+                    @*<span class="field-icon">🔒</span>*@
+                    <span class="field-icon"><i class="fa-solid fa-lock"></i></span>
+                    <input class="auth-input" type="password" id="password" name="password" placeholder="Enter your password" autocomplete="new-password" style="padding-right: 42px;" />
+                    <button type="button" class="pwd-toggle" id="pwdToggle" aria-label="Toggle password">👁️</button>
+                </div>
+                <div class="strength-wrap">
+                    <div class="strength-bar-bg"><div class="strength-bar" id="strengthBar"></div></div>
+                    <div class="strength-label" id="strengthLabel"></div>
+                </div>
+            </div>
+            <p class="terms-text">By signing up you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></p>
+            <button type="submit" class="btn-submit" id="submitBtn">
+                Create Free Account →
+            </button>
+        </form>
+        <div class="auth-divider" style="margin-top: 20px;"><span>Already have an account?</span></div>
+        <div class="auth-footer" style="margin-top: 12px;">
+            <a href="/Home/Login">Sign in to DivineCRM →</a>
+        </div>
+    </div>
+</div>
+<script>// Password toggle
+    const pwdInput = document.getElementById('password');
+    document.getElementById('pwdToggle').addEventListener('click', function () {
+        const show = pwdInput.type === 'password';
+        pwdInput.type = show ? 'text' : 'password';
+        this.textContent = show ? '🙈' : '👁️';
+    });
+
+    // Password strength
+    document.getElementById('password').addEventListener('input', function () {
+        const val = this.value;
+        const bar = document.getElementById('strengthBar');
+        const lbl = document.getElementById('strengthLabel');
+        let score = 0;
+        if (val.length >= 8) score++;
+        if (/[A-Z]/.test(val)) score++;
+        if (/[0-9]/.test(val)) score++;
+        if (/[^A-Za-z0-9]/.test(val)) score++;
+        const levels = [
+            { w: '0%', bg: 'transparent', text: '' },
+            { w: '25%', bg: '#ef4444', text: 'Weak' },
+            { w: '50%', bg: '#f59e0b', text: 'Fair' },
+            { w: '75%', bg: '#3b82f6', text: 'Good' },
+            { w: '100%', bg: '#10b981', text: 'Strong' },
+        ];
+        const l = levels[score];
+        bar.style.width = l.w;
+        bar.style.background = l.bg;
+        lbl.textContent = l.text;
+        lbl.style.color = l.bg;
+    });
+
+    // Inline validation
+    function showMsg(id, text, type) {
+        const el = document.getElementById(id);
+        el.textContent = text;
+        el.className = 'field-msg show ' + type;
+    }
+    function clearMsg(id) {
+        const el = document.getElementById(id);
+        el.className = 'field-msg';
+    }
+
+    document.getElementById('fullname').addEventListener('blur', function () {
+        if (this.value.trim().length < 3) {
+            this.classList.remove('valid'); this.classList.add('invalid');
+            showMsg('name-msg', 'Please enter your full name', 'err');
+        } else {
+            this.classList.remove('invalid'); this.classList.add('valid');
+            clearMsg('name-msg');
+        }
+    });
+
+    document.getElementById('phone').addEventListener('blur', function () {
+        const ph = this.value.replace(/\s/g, '');
+        if (!/^\+?[0-9]{8,15}$/.test(ph)) {
+            this.classList.remove('valid'); this.classList.add('invalid');
+            showMsg('phone-msg', 'Enter a valid phone number', 'err');
+        } else {
+            this.classList.remove('invalid'); this.classList.add('valid');
+            clearMsg('phone-msg');
+        }
+    });
+
+    document.getElementById('email').addEventListener('blur', function () {
+        if (!/^[^\s@@]+@@[^\s@@]+\.[^\s@@]+$/.test(this.value)) {
+            this.classList.remove('valid'); this.classList.add('invalid');
+            showMsg('email-msg', 'Enter a valid email address', 'err');
+        } else {
+            this.classList.remove('invalid'); this.classList.add('valid');
+            showMsg('email-msg', 'Looks good!', 'ok');
+        }
+    });
+
+    // Submit
+    document.getElementById('signupForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        btn.textContent = 'Creating account…';
+        btn.style.opacity = '0.8';
+        // Hook up your controller action here
+        // this.submit();
+        setTimeout(() => {
+            btn.textContent = '✓ Account Created!';
+            btn.style.background = 'linear-gradient(135deg,#10b981,#059669)';
+        }, 1400);
+    });
+</script>

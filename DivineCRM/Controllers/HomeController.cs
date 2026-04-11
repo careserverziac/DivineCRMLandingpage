@@ -14,17 +14,89 @@ namespace DivineCRM.Controllers
         }
 
         public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
+        {          
             return View();
         }
 
         public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
+        {         
             return View();
         }
+
+        public ActionResult Home()
+        {
+            return View();
+        }
+        
+         public ActionResult Features()
+         {
+            return View();
+         }
+
+        public ActionResult Pricing()
+        {
+            return View();
+        }
+
+        public ActionResult Industries()
+        {
+            return View();
+        }
+
+        public ActionResult LeadManagementCRM()
+        {
+            return View();
+        }
+
+        public ActionResult SalesCRM()
+        {
+            return View();
+        }
+
+        public ActionResult MobileCRM()
+        {
+            return View();
+        }
+        public ActionResult SmallBusinessCRM()
+        {
+            return View();
+        }
+
+        public ActionResult Blog()
+        {
+            return View();
+        }
+
+        public ActionResult Support()
+        {
+            return View();
+        }
+
+        public ActionResult WhyUs()
+        {
+            return View();
+        }
+
+        public ActionResult Compare()
+        {
+            return View();
+        }
+
+        public ActionResult SignUp()
+        {
+            return View();
+        }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+         public ActionResult BookFreeDemo()
+        {
+            return View();
+        }
+
+
+
     }
 }
