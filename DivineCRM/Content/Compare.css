@@ -850,6 +850,22 @@ section {
         transform: translateY(-2px);
     }
 
+
+.adv-card {
+    display: flex;
+    flex-direction: column !important; /* 🔥 forces vertical layout */
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+}
+
+.adv-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    font-size: 24px;
+}
 /* ── RESPONSIVE ── */
 @media (max-width:1024px) {
     .g4 {

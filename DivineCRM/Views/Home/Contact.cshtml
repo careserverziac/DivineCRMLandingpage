@@ -3,6 +3,785 @@
     ViewBag.Title = "Contact";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
+<style>
+    /* ── Contact Quick Stats ── */
+    .stat-badge {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 14px;
+        padding: 18px 20px;
+    }
 
-<h2>Contact</h2>
+    .stat-badge-icon {
+        width: 46px;
+        height: 46px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        flex-shrink: 0;
+    }
 
+        .stat-badge-icon.blue {
+            background: rgba(79,110,247,0.15);
+            color: #6c8fff;
+        }
+
+        .stat-badge-icon.purple {
+            background: rgba(139,92,246,0.15);
+            color: #a78bfa;
+        }
+
+        .stat-badge-icon.cyan {
+            background: rgba(34,211,238,0.12);
+            color: #22d3ee;
+        }
+
+        .stat-badge-icon.pink {
+            background: rgba(244,114,182,0.12);
+            color: #f472b6;
+        }
+
+    .stat-badge-num {
+        font-size: 17px;
+        font-weight: 700;
+        color: #fff;
+        line-height: 1.2;
+    }
+
+    .stat-badge-label {
+        font-size: 12px;
+        color: rgba(255,255,255,0.45);
+        margin-top: 2px;
+    }
+
+    /* ── Two-column contact layout ── */
+    .contact-wrap {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 32px;
+        align-items: start;
+    }
+
+    .faq-item {
+        background: #111 !important;
+        border-radius: 12px !important;
+        margin-bottom: 16px !important;
+        overflow: hidden !important;
+        border: 1px solid rgba(255,255,255,0.06) !important;
+    }
+
+    .faq-q {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        gap: 16px !important;
+        padding: 18px 20px !important;
+        background: transparent !important;
+        border: none !important;
+        font-size: 16px !important;
+        font-weight: 500 !important;
+        color: #fff !important;
+        cursor: pointer !important;
+        text-align: left !important;
+    }
+
+        .faq-q span:first-child {
+            flex: 1 !important;
+        }
+
+    .faq-icon {
+        min-width: 20px !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
+        .faq-icon i {
+            transition: transform 0.3s ease !important;
+        }
+
+    .faq-item.active .faq-icon i {
+        transform: rotate(180deg) !important;
+    }
+
+    .faq-a {
+        max-height: 0 !important;
+        overflow: hidden !important;
+        padding: 0 20px !important;
+        color: #bbb !important;
+        font-size: 15px !important;
+        line-height: 1.6 !important;
+        transition: all 0.35s ease !important;
+    }
+
+    .faq-item.active .faq-a {
+        max-height: 200px !important;
+        padding: 0 20px 18px !important;
+    }
+
+    @@media (max-width: 860px) {
+        .contact-wrap {
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+    }
+
+    /* ── Channel cards (left) ── */
+    .channel-card {
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+        padding: 20px;
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255,255,255,0.07);
+        border-radius: 14px;
+        margin-bottom: 14px;
+        transition: border-color 0.25s, transform 0.25s;
+    }
+
+        .channel-card:hover {
+            border-color: rgba(79,110,247,0.4);
+            transform: translateY(-2px);
+        }
+
+    .channel-icon {
+        width: 46px;
+        height: 46px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        flex-shrink: 0;
+    }
+
+        .channel-icon.blue {
+            background: rgba(79,110,247,0.15);
+            color: #6c8fff;
+        }
+
+        .channel-icon.purple {
+            background: rgba(139,92,246,0.15);
+            color: #a78bfa;
+        }
+
+        .channel-icon.cyan {
+            background: rgba(34,211,238,0.12);
+            color: #22d3ee;
+        }
+
+        .channel-icon.pink {
+            background: rgba(244,114,182,0.12);
+            color: #f472b6;
+        }
+
+    .channel-body h4 {
+        font-size: 15px;
+        font-weight: 600;
+        color: #fff;
+        margin: 0 0 4px;
+    }
+
+    .channel-body p {
+        font-size: 13px;
+        color: rgba(255,255,255,0.5);
+        margin: 0 0 10px;
+        line-height: 1.5;
+    }
+
+    .channel-link {
+        font-size: 13px;
+        color: #6c8fff;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        transition: gap 0.2s, opacity 0.2s;
+    }
+
+        .channel-link:hover {
+            gap: 8px;
+            opacity: 0.85;
+        }
+
+    /* ── Contact form (right) ── */
+    .contact-form-wrap {
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255,255,255,0.09);
+        border-radius: 20px;
+        padding: 36px 32px;
+    }
+
+    .contact-form-header h3 {
+        font-size: 22px;
+        font-weight: 700;
+        color: #fff;
+        margin: 0 0 6px;
+    }
+
+    .contact-form-header p {
+        font-size: 14px;
+        color: rgba(255,255,255,0.45);
+        margin: 0 0 28px;
+    }
+
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+
+
+
+    @@media (max-width: 560px) {
+        .form-row {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .form-group {
+        margin-bottom: 18px;
+    }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.65);
+            margin-bottom: 7px;
+        }
+
+        .form-group .req {
+            color: #f472b6;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 11px 14px;
+            font-size: 14px;
+            color: #fff;
+            outline: none;
+            transition: border-color 0.2s, background 0.2s;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+
+            .form-group input::placeholder,
+            .form-group textarea::placeholder {
+                color: rgba(255,255,255,0.25);
+            }
+
+            .form-group select option {
+                background: #12131a;
+                color: #fff;
+            }
+
+            .form-group input:focus,
+            .form-group select:focus,
+            .form-group textarea:focus {
+                border-color: rgba(79,110,247,0.6);
+                background: rgba(79,110,247,0.06);
+            }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 110px;
+        }
+
+    .form-note {
+        font-size: 12px;
+        color: rgba(255,255,255,0.3);
+        text-align: center;
+        margin-top: 14px;
+        margin-bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+    }
+
+    /* ── Office cards ── */
+    .office-card {
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255,255,255,0.07);
+        border-radius: 16px;
+        padding: 24px 22px;
+        transition: border-color 0.25s, transform 0.25s;
+    }
+
+        .office-card:hover {
+            border-color: rgba(79,110,247,0.35);
+            transform: translateY(-3px);
+        }
+
+    .office-icon {
+        width: 46px;
+        height: 46px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        margin-bottom: 14px;
+    }
+
+        .office-icon.blue {
+            background: rgba(79,110,247,0.15);
+            color: #6c8fff;
+        }
+
+        .office-icon.purple {
+            background: rgba(139,92,246,0.15);
+            color: #a78bfa;
+        }
+
+        .office-icon.cyan {
+            background: rgba(34,211,238,0.12);
+            color: #22d3ee;
+        }
+
+        .office-icon.pink {
+            background: rgba(244,114,182,0.12);
+            color: #f472b6;
+        }
+
+    .office-card h4 {
+        font-size: 16px;
+        font-weight: 600;
+        color: #fff;
+        margin: 0 0 8px;
+    }
+
+    .office-card p {
+        font-size: 13px;
+        color: rgba(255,255,255,0.5);
+        margin: 0;
+        line-height: 1.65;
+    }
+
+    /* ── Social pills ── */
+    .social-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 20px;
+        padding: 5px 12px;
+        font-size: 12px;
+        color: rgba(255,255,255,0.65);
+        text-decoration: none;
+        transition: background 0.2s, color 0.2s;
+    }
+
+        .social-pill:hover {
+            background: rgba(79,110,247,0.2);
+            color: #fff;
+            border-color: rgba(79,110,247,0.4);
+        }
+
+    /* ── FAQ ── */
+    .faq-item {
+        border-bottom: 1px solid rgba(255,255,255,0.07);
+        padding: 4px 0;
+    }
+
+    .faq-q {
+        width: 100%;
+        background: none;
+        border: none;
+        color: rgba(255,255,255,0.85);
+        font-size: 15px;
+        font-weight: 500;
+        text-align: left;
+        padding: 18px 0;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        font-family: inherit;
+        transition: color 0.2s;
+    }
+
+        .faq-q:hover {
+            color: #fff;
+        }
+
+    .faq-icon {
+        color: rgba(255,255,255,0.35);
+        transition: transform 0.3s;
+        font-size: 13px;
+    }
+
+    .faq-q.open .faq-icon {
+        transform: rotate(180deg);
+        color: #6c8fff;
+    }
+
+    .faq-a {
+        max-height: 0;
+        overflow: hidden;
+        font-size: 14px;
+        color: rgba(255,255,255,0.5);
+        line-height: 1.7;
+        transition: max-height 0.35s ease, padding 0.3s;
+        padding: 0;
+    }
+
+        .faq-a.open {
+            max-height: 200px;
+            padding-bottom: 16px;
+        }
+</style>
+<!-- CONTACT HERO -->
+<section class="hero" style="min-height:320px; padding: 80px 0 60px;">
+    <div class="mesh-bg">
+        <div class="mesh-orb orb1"></div>
+        <div class="mesh-orb orb2"></div>
+        <div class="mesh-orb orb3"></div>
+    </div>
+    <div class="hero-content" style="text-align:center;">
+        <div class="hero-badge"><span class="badge-dot"></span> We're here to help</div>
+        <h1 style="font-size:clamp(32px,5vw,54px);">Get in <span class="grad-text">Touch</span></h1>
+        <p class="section-sub mx" style="max-width:560px; margin: 0 auto;">
+            Have questions about DivineCRM? Our team is ready to help you get started, book a demo, or answer any query.
+        </p>
+    </div>
+</section>
+<!-- CONTACT QUICK STATS -->
+<section class="sec-dark" style="padding: 40px 0;">
+    <div class="grid g4" style="max-width:900px; margin:0 auto; padding:0 24px;">
+        <div class="stat-badge reveal d1">
+            <span class="stat-badge-icon blue"><i class="fa-solid fa-headset"></i></span>
+            <div>
+                <div class="stat-badge-num">24 hrs</div>
+                <div class="stat-badge-label">Response time</div>
+            </div>
+        </div>
+        <div class="stat-badge reveal d2">
+            <span class="stat-badge-icon purple"><i class="fa-solid fa-globe"></i></span>
+            <div>
+                <div class="stat-badge-num">PAN India</div>
+                <div class="stat-badge-label">Sales support</div>
+            </div>
+        </div>
+        <div class="stat-badge reveal d3">
+            <span class="stat-badge-icon cyan"><i class="fa-solid fa-star"></i></span>
+            <div>
+                <div class="stat-badge-num">500+</div>
+                <div class="stat-badge-label">Happy businesses</div>
+            </div>
+        </div>
+        <div class="stat-badge reveal d4">
+            <span class="stat-badge-icon pink"><i class="fa-solid fa-mobile-screen-button"></i></span>
+            <div>
+                <div class="stat-badge-num">Mobile</div>
+                <div class="stat-badge-label">Support available</div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- MAIN CONTACT SECTION -->
+<section style="padding: 70px 0;">
+    <div class="contact-wrap reveal">
+        <!-- LEFT: Contact Channels -->
+        <div class="contact-channels">
+            <div class="section-tag" style="margin-bottom:16px;">Contact Options</div>
+            <h2 class="section-title" style="font-size:clamp(22px,3vw,34px); margin-bottom:10px;">
+                How Can We <span class="grad-text">Help You?</span>
+            </h2>
+            <p style="color:rgba(255,255,255,0.55); font-size:15px; line-height:1.7; margin-bottom:36px;">
+                Choose the best way to reach us. Whether it's a quick question or an in-depth demo, we're just a message away.
+            </p>
+            <div class="channel-card reveal d1">
+                <div class="channel-icon blue"><i class="fa-solid fa-calendar-check"></i></div>
+                <div class="channel-body">
+                    <h4>Book a Free Demo</h4>
+                    <p>See DivineCRM in action with a personalised walkthrough by our product experts.</p>
+                    <a href="/Home/BookFreeDemo" class="channel-link">Schedule Demo <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="channel-card reveal d2">
+                <div class="channel-icon purple"><i class="fa-solid fa-envelope"></i></div>
+                <div class="channel-body">
+                    <h4>Email Us</h4>
+                    <p>Send us your questions, feedback or partnership enquiries anytime.</p>
+                    <a href="mailto:sales@divinecrm.in" class="channel-link">sales@divinecrm.in <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="channel-card reveal d3">
+                <div class="channel-icon cyan"><i class="fa-brands fa-whatsapp"></i></div>
+                <div class="channel-body">
+                    <h4>WhatsApp Support</h4>
+                    <p>Chat with our team instantly on WhatsApp for quick queries and support.</p>
+                    <a href="https://wa.me/919999999999" target="_blank" class="channel-link">Chat on WhatsApp <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="channel-card reveal d4">
+                <div class="channel-icon pink"><i class="fa-solid fa-phone"></i></div>
+                <div class="channel-body">
+                    <h4>Call Us</h4>
+                    <p>Speak directly to a DivineCRM specialist. Available Mon–Sat, 9am–7pm.</p>
+                    <a href="tel:+919999999999" class="channel-link">+91 99999 99999 <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <!-- RIGHT: Contact Form -->
+        <div class="contact-form-wrap reveal d2">
+            <div class="contact-form-header">
+                <h3>Send Us a Message</h3>
+                <p>Fill in your details and we'll get back within 24 hours.</p>
+            </div>
+            @using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { @class = "contact-form", id = "contactForm" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fullName">Full Name <span class="req">*</span></label>
+                        <input type="text" id="fullName" name="FullName" placeholder="Rahul Sharma" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="company">Company Name</label>
+                        <input type="text" id="company" name="Company" placeholder="Your Company Pvt. Ltd." />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Work Email <span class="req">*</span></label>
+                        <input type="email" id="email" name="Email" placeholder="you@company.com" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number <span class="req">*</span></label>
+                        <input type="tel" id="phone" name="Phone" placeholder="+91 98765 43210" required />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="teamSize">Team Size</label>
+                    <select id="teamSize" name="TeamSize">
+                        <option value="" disabled selected>Select team size</option>
+                        <option value="1-5">1 – 5 members</option>
+                        <option value="6-20">6 – 20 members</option>
+                        <option value="21-50">21 – 50 members</option>
+                        <option value="51-100">51 – 100 members</option>
+                        <option value="100+">100+ members</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="interest">I'm interested in</label>
+                    <select id="interest" name="Interest">
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="demo">Book a Free Demo</option>
+                        <option value="trial">Start Free Trial</option>
+                        <option value="pricing">Pricing Information</option>
+                        <option value="features">Feature Details</option>
+                        <option value="support">Technical Support</option>
+                        <option value="partnership">Partnership / Reseller</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message <span class="req">*</span></label>
+                    <textarea id="message" name="Message" rows="4" placeholder="Tell us about your business and how we can help..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary" style="width:100%; font-size:15px; padding:14px 0; justify-content:center;">
+                    <i class="fa-solid fa-paper-plane" style="margin-right:8px;"></i> Send Message
+                </button>
+
+                <p class="form-note"><i class="fa-solid fa-shield-halved"></i> Your information is 100% secure and never shared with third parties.</p>
+            }
+        </div>
+    </div>
+</section>
+<!-- OFFICE / REACH US -->
+<section class="sec-darker" style="padding: 70px 0;">
+    <div class="tc reveal">
+        <div class="section-tag">Our Presence</div>
+        <h2 class="section-title">Find Us <span class="grad-text">Across India</span></h2>
+        <p class="section-sub mx">DivineCRM is headquartered in India and serves businesses nationwide.</p>
+    </div>
+    <div class="grid g4" style="max-width:960px; margin: 48px auto 0; padding:0 24px;">
+        <div class="office-card reveal d1">
+            <div class="office-icon blue"><i class="fa-solid fa-building"></i></div>
+            <h4>Head Office</h4>
+            <p>123, Business Hub, Sector 18<br>Noida, Uttar Pradesh – 201301</p>
+            <a href="https://maps.google.com" target="_blank" class="channel-link" style="font-size:13px;">
+                Get Directions <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+        <div class="office-card reveal d2">
+            <div class="office-icon purple"><i class="fa-solid fa-clock"></i></div>
+            <h4>Working Hours</h4>
+            <p>Monday – Friday<br>9:00 AM – 7:00 PM IST</p>
+            <p style="margin-top:6px;">Saturday<br>10:00 AM – 4:00 PM IST</p>
+        </div>
+        <div class="office-card reveal d3">
+            <div class="office-icon cyan"><i class="fa-solid fa-envelope-open-text"></i></div>
+            <h4>Email Contacts</h4>
+            <p>Sales: <a href="mailto:sales@divinecrm.in" class="channel-link" style="font-size:13px;">sales@divinecrm.in</a></p>
+            <p style="margin-top:6px;">Support: <a href="mailto:support@divinecrm.in" class="channel-link" style="font-size:13px;">support@divinecrm.in</a></p>
+        </div>
+        <div class="office-card reveal d4">
+            <div class="office-icon pink"><i class="fa-brands fa-linkedin"></i></div>
+            <h4>Follow Us</h4>
+            <p style="margin-bottom:10px;">Stay updated with the latest product news and tips.</p>
+            <div style="display:flex; gap:12px; flex-wrap:wrap;">
+                <a href="#" class="social-pill"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a>
+                <a href="#" class="social-pill"><i class="fa-brands fa-twitter"></i> Twitter</a>
+                <a href="#" class="social-pill"><i class="fa-brands fa-instagram"></i> Instagram</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- FAQ STRIP -->
+<section class="sec-dark" style="padding: 70px 0;">
+    <div class="tc reveal">
+        <div class="section-tag">FAQs</div>
+        <h2 class="section-title">Quick <span class="grad-text">Answers</span></h2>
+        <p class="section-sub mx">Common questions about getting started with DivineCRM.</p>
+    </div>
+
+    <div class="faq-list reveal" style="max-width:720px; margin: 48px auto 0; padding:0 24px;">
+
+        <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+                <span>Is there a free trial available?</span>
+                <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+            </button>
+            <div class="faq-a">
+                Yes! DivineCRM offers a free trial with no credit card required. Sign up and explore all features instantly.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+                <span>How long does onboarding take?</span>
+                <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+            </button>
+            <div class="faq-a">
+                Most teams are fully onboarded within a week. Our support team provides hands-on guidance throughout the process.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+                <span>Do you offer training for our sales team?</span>
+                <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+            </button>
+            <div class="faq-a">
+                Absolutely. We provide live training sessions, video tutorials and dedicated onboarding support for all plans.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+                <span>Can DivineCRM be customised for my industry?</span>
+                <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+            </button>
+            <div class="faq-a">
+                Yes. DivineCRM supports custom workflows for Real Estate, Manufacturing, Logistics, Education and more.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+                <span>Is there a mobile app available?</span>
+                <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+            </button>
+            <div class="faq-a">
+                Yes. DivineCRM has a dedicated Android app with offline support for field teams.
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- FINAL CTA -->
+<section class="final-cta" id="demo">
+    <div class="cta-orb1"></div>
+    <div class="cta-orb2"></div>
+    <div class="reveal">
+        <div class="section-tag" style="margin-bottom:20px;">Get Started Today</div>
+        <h2>Ready to <span class="grad-text">Grow Your Sales?</span></h2>
+        <p>Start using DivineCRM today and manage your customers efficiently. No credit card required.</p>
+        <div class="cta-btns">
+            <a href="/Home/BookFreeDemo" class="btn-primary" style="font-size:16px; padding:16px 36px;">Book Free Demo</a>
+            <a href="#trial" class="btn-outline" style="font-size:16px; padding:16px 36px;">Start Free Trial</a>
+        </div>
+    </div>
+</section>
+
+<script>
+    /* ── Intersection observer (reveal animation) ── */
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right')
+        .forEach(el => observer.observe(el));
+
+
+    /* ── Navbar scroll effect ── */
+    window.addEventListener('scroll', () => {
+        const nav = document.getElementById('navbar');
+        if (nav) {
+            nav.style.background = window.scrollY > 50
+                ? 'rgba(8,9,13,0.97)'
+                : 'rgba(8,9,13,0.85)';
+        }
+    });
+
+
+    /* ── FAQ ACCORDION (FIXED) ── */
+    function toggleFaq(btn) {
+        const item = btn.parentElement;
+
+        // Close all other FAQ items
+        document.querySelectorAll('.faq-item').forEach(i => {
+            if (i !== item) {
+                i.classList.remove('active');
+            }
+        });
+
+        // Toggle current FAQ
+        item.classList.toggle('active');
+    }
+
+
+    /* ── Contact form loading state ── */
+    const form = document.getElementById('contactForm');
+
+    if (form) {
+        form.addEventListener('submit', function () {
+            const btn = form.querySelector('button[type="submit"]');
+
+            if (btn) {
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin" style="margin-right:8px;"></i> Sending...';
+                btn.disabled = true;
+            }
+        });
+    }
+</script>

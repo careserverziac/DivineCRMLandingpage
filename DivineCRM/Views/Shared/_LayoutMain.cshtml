@@ -6,6 +6,7 @@
     @*<meta name="viewport" content="width=device-width, initial-scale=1.0">*@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - DivineCRM</title>
+    <link rel="icon" type="image/x-icon" sizes="32x32" href="~/Content/Images/logo_only_light1.ico" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -66,8 +67,9 @@
         <div class="nav-links">
             <a href="/Home/Index">Home</a>
             <a href="/Home/Features">Features</a>
-            <a href="/Home/WhyUs">Why Us</a>
+            @*<a href="/Home/WhyUs">Why Us</a>*@
             <a href="/Home/Industries">Industries</a>
+            <a href="/Home/Blog">Blog</a>
             <a href="/Home/Compare">Compare</a>
             <a href="/Home/Contact">Contact</a>
             <a href="/Home/Login">Login</a>
@@ -86,11 +88,11 @@
             <div class="footer-brand">
                 @*<div class="nav-logo" style="font-size:24px;">DivineCRM</div>*@
                 @*<div class="nav-logo">
-                        <a href="/">
-                            <img src="~/Content/Images/footer_logo.png" alt="DivineCRM Logo">
+                    <a href="/">
+                        <img src="~/Content/Images/footer_logo.png" alt="DivineCRM Logo">
 
-                        </a>
-                    </div>*@
+                    </a>
+                </div>*@
                 <div class="nav-logo">
                     <a href="/">
                         <img src="~/Content/Images/logo_only_light (1).svg" alt="Logo Icon">
@@ -129,9 +131,27 @@
                 </ul>
             </div>
         </div>
-        <div class="footer-bottom">
+        @*<div class="footer-bottom">
             <span>© 2025 DivineCRM. All rights reserved.</span>
             <span>Privacy Policy · Terms of Service</span>
+        </div>*@
+
+
+        <div class="row align-items-center footer-bottom-row">
+
+            <div class="col-lg-6">
+                <div class="footer-left">
+                    <span>© 2025 DivineCRM. All rights reserved.</span>
+                    @*<span class="footer-links">Privacy Policy · Terms of Service</span>*@
+                </div>
+            </div>
+
+            <div class="col-lg-6 text-lg-end">
+                <p class="footer-powered">
+                    Powered by <a href="https://ziacsoft.com" target="_blank">ZiacSoft</a>
+                </p>
+            </div>
+
         </div>
     </footer>
 

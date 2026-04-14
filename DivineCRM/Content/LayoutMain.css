@@ -171,6 +171,37 @@ footer {
     font-size: 12px;
 }
 
+.footer-bottom-row {
+    margin-top: 20px;
+}
+
+.footer-left {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    font-size: 14px;
+    color: #aaa;
+}
+
+.footer-powered {
+    margin: 0;
+    font-size: 14px;
+    color: #aaa;
+}
+
+/* Mobile fix */
+@media (max-width: 991px) {
+    .footer-left {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .footer-powered {
+        text-align: center;
+        margin-top: 10px;
+    }
+}
+
 /* =========================
            TABLET (≤1024px)
         ========================= */

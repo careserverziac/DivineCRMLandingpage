@@ -455,9 +455,11 @@ body {
 .terms-text {
     text-align: center;
     font-size: 11px;
-    color: var(--muted2);
+    /*color: var(--muted2);*/
+    color:white;
     animation: fadeUp 0.5s ease 0.5s both;
     line-height: 1.6;
+    padding:5px;
 }
 
     .terms-text a {
