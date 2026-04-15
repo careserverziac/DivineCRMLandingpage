@@ -140,19 +140,28 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Blog.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Compare.css" />
+    <Content Include="Content\Contact.css" />
+    <Content Include="Content\CRMvsExcel.css" />
     <Content Include="Content\DivineCRM_Landingpage.css" />
+    <Content Include="Content\Features.css" />
+    <Content Include="Content\HowToImproveSale.css" />
     <Content Include="Content\Images\footer_logo.png" />
     <Content Include="Content\Images\logo_name_only_light.svg" />
     <Content Include="Content\Images\logo_only_light %281%29.svg" />
     <Content Include="Content\Images\logo_only_light.svg" />
     <Content Include="Content\Images\logo_with_name_dark.svg" />
+    <Content Include="Content\Industries.css" />
     <Content Include="Content\LayoutMain.css" />
     <Content Include="Content\Login.css" />
+    <Content Include="Content\Pricing.css" />
     <Content Include="Content\SignUp.css" />
+    <Content Include="Content\SmallBusinesses.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -200,6 +209,9 @@
     <Content Include="Views\Home\SignUp.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\BookFreeDemo.cshtml" />
+    <Content Include="Views\Home\SmallBusinesses.cshtml" />
+    <Content Include="Views\Home\CRMvsExcel.cshtml" />
+    <Content Include="Views\Home\HowToImproveSale.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

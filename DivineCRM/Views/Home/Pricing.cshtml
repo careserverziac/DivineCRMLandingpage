@@ -4,5 +4,552 @@
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
 
-<h2>Pricing</h2>
 
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+    <div class="mesh-bg">
+        <div class="mesh-orb orb1"></div>
+        <div class="mesh-orb orb2"></div>
+        <div class="mesh-orb orb3"></div>
+    </div>
+    <div class="hero-content">
+        <div class="hero-badge"><span class="badge-dot"></span> Affordable CRM Plans for Growing Businesses</div>
+        <h1>Simple, Flexible <span class="grad-text">Pricing</span></h1>
+        <p>DivineCRM offers flexible pricing designed for startups, growing teams and enterprise organizations. Start small, scale as your business grows and unlock powerful CRM capabilities.</p>
+        @*<div class="hero-trust">
+            <span class="trust-pill"><span class="ci">✓</span> No hidden charges</span>
+            <span class="trust-pill"><span class="ci">✓</span> No long-term lock-in</span>
+            <span class="trust-pill"><span class="ci">✓</span> Cancel anytime</span>
+        </div>*@
+        <div class="hero-trust">
+            <span class="trust-pill">
+                <span class="ci"><i class="fa-solid fa-circle-check"></i></span>
+                No hidden charges
+            </span>
+
+            <span class="trust-pill">
+                <span class="ci"><i class="fa-solid fa-circle-check"></i></span>
+                No long-term lock-in
+            </span>
+
+            <span class="trust-pill">
+                <span class="ci"><i class="fa-solid fa-circle-check"></i></span>
+                Cancel anytime
+            </span>
+        </div>
+    </div>
+</section>
+<!-- PRICING PLANS -->
+<section class="sec-dark" id="plans">
+    <div class="tc reveal">
+        <div class="section-tag">Plans</div>
+        <h2 class="section-title">Choose Your <span class="grad-text">Plan</span></h2>
+        <p class="section-sub mx">Pick the plan that fits your team size and business needs.</p>
+    </div>
+    <div class="pricing-grid">
+        <!-- FREE TRIAL -->
+        <div class="price-card reveal d1">
+            <div class="plan-icon">
+                <i class="fa-solid fa-gift"></i>
+            </div>
+            <div class="plan-name">Free Trial</div>
+            <div class="plan-tagline">Perfect for businesses evaluating CRM software.</div>
+            <div class="plan-divider"></div>
+            <div class="feat-label">Includes</div>
+            <ul class="feat-list">
+                <li>Up to 3 Users</li>
+                <li>Lead Management</li>
+                <li>Follow-up Tracking</li>
+                <li>Basic Reports</li>
+            </ul>
+            <div class="ideal-label">Ideal For</div>
+            <div class="ideal-tags">
+                <span class="ideal-tag">Small teams</span>
+                <span class="ideal-tag">Trial users</span>
+                <span class="ideal-tag">New businesses</span>
+                <span class="ideal-tag">CRM evaluation</span>
+            </div>
+            <div class="plan-cta">
+                <a href="#" class="btn-plan-outline">Start Free Trial</a>
+            </div>
+        </div>
+        <!-- STARTER -->
+        <div class="price-card reveal d2">
+            <div class="plan-icon">
+                <i class="fa-solid fa-seedling"></i>
+            </div>
+            <div class="plan-name">Starter Plan</div>
+            <div class="plan-tagline">Best for small businesses starting CRM adoption.</div>
+            <div class="plan-divider"></div>
+            <div class="feat-label">Starter Features</div>
+            <ul class="feat-list">
+                <li>Up to 5 Users</li>
+                <li>Lead Management</li>
+                <li>Follow-up Management</li>
+                <li>Mobile CRM Access</li>
+            </ul>
+            <div class="feat-label">Additional Benefits</div>
+            <ul class="feat-list">
+                <li>Activity tracking</li>
+                <li>Basic reporting</li>
+                <li>Role based access</li>
+                <li>Email support</li>
+            </ul>
+            <div class="ideal-label">Ideal For</div>
+            <div class="ideal-tags">
+                <span class="ideal-tag">Small businesses</span>
+                <span class="ideal-tag">Startups</span>
+                <span class="ideal-tag">Sales teams</span>
+                <span class="ideal-tag">Service companies</span>
+            </div>
+            <div class="plan-cta">
+                <a href="#" class="btn-plan-outline">Get Started</a>
+            </div>
+        </div>
+        <!-- GROWTH (POPULAR) -->
+        <div class="price-card popular reveal d3">
+            <div class="popular-badge">Most Popular</div>
+            <div class="plan-icon" style="margin-top:14px;">
+                <i class="fa-solid fa-rocket"></i>
+            </div>
+            <div class="plan-name">Growth Plan</div>
+            <div class="plan-tagline">Designed for growing sales teams and expanding businesses.</div>
+            <div class="plan-divider"></div>
+            <div class="feat-label">Growth Features</div>
+            <ul class="feat-list">
+                <li>Up to 15 Users</li>
+                <li>Sales Pipeline Management</li>
+                <li>Workflow Automation</li>
+                <li>Reports and Analytics</li>
+            </ul>
+            <div class="feat-label">Additional Benefits</div>
+            <ul class="feat-list">
+                <li>Team performance tracking</li>
+                <li>Activity tracking</li>
+                <li>Lead assignment automation</li>
+                <li>Mobile CRM access</li>
+            </ul>
+            <div class="ideal-label">Ideal For</div>
+            <div class="ideal-tags">
+                <span class="ideal-tag">Growing companies</span>
+                <span class="ideal-tag">Sales teams</span>
+                <span class="ideal-tag">Real estate firms</span>
+                <span class="ideal-tag">Logistics companies</span>
+            </div>
+            <div class="plan-cta">
+                <a href="#" class="btn-plan-primary">Start Growth Plan</a>
+            </div>
+        </div>
+        <!-- PROFESSIONAL -->
+        <div class="price-card reveal d4">
+            <div class="plan-icon">
+                <i class="fa-solid fa-bolt"></i>
+            </div>
+            <div class="plan-name">Professional Plan</div>
+            <div class="plan-tagline">Advanced CRM capabilities for larger teams.</div>
+            <div class="plan-divider"></div>
+            <div class="feat-label">Professional Features</div>
+            <ul class="feat-list">
+                <li>Up to 50 Users</li>
+                <li>Custom Workflows</li>
+                <li>Advanced Reports</li>
+                <li>Role Based Permissions</li>
+            </ul>
+            <div class="feat-label">Additional Benefits</div>
+            <ul class="feat-list">
+                <li>Integration support</li>
+                <li>Team performance analytics</li>
+                <li>Sales forecasting</li>
+                <li>Priority support</li>
+            </ul>
+            <div class="ideal-label">Ideal For</div>
+            <div class="ideal-tags">
+                <span class="ideal-tag">Mid size companies</span>
+                <span class="ideal-tag">Multi team sales</span>
+                <span class="ideal-tag">Manufacturing</span>
+                <span class="ideal-tag">Service organizations</span>
+            </div>
+            <div class="plan-cta">
+                <a href="#" class="btn-plan-outline">Choose Professional</a>
+            </div>
+        </div>
+        <!-- ENTERPRISE -->
+        <div class="price-card reveal d5">
+            <div class="plan-icon">
+                <i class="fa-solid fa-building-columns"></i>
+            </div>
+            <div class="plan-name">Enterprise Plan</div>
+            <div class="plan-tagline">Custom CRM for large organizations.</div>
+            <div class="plan-divider"></div>
+            <div class="feat-label">Enterprise Features</div>
+            <ul class="feat-list">
+                <li>Unlimited Users</li>
+                <li>Custom Implementation</li>
+                <li>Advanced Security</li>
+                <li>Dedicated Support</li>
+            </ul>
+            <div class="feat-label">Additional Benefits</div>
+            <ul class="feat-list">
+                <li>Custom integrations</li>
+                <li>Data migration support</li>
+                <li>Dedicated account manager</li>
+                <li>SLA based support</li>
+            </ul>
+            <div class="ideal-label">Ideal For</div>
+            <div class="ideal-tags">
+                <span class="ideal-tag">Enterprise companies</span>
+                <span class="ideal-tag">Multi branch orgs</span>
+                <span class="ideal-tag">Large sales teams</span>
+                <span class="ideal-tag">Custom CRM needs</span>
+            </div>
+            <div class="plan-cta">
+                <a href="#" class="btn-plan-outline">Contact Sales</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- FEATURE COMPARISON -->
+@*<section>
+    <div class="tc reveal">
+        <div class="section-tag">Comparison</div>
+        <h2 class="section-title">Feature <span class="grad-text">Comparison</span></h2>
+        <p class="section-sub mx">See exactly what's included in each plan.</p>
+    </div>
+    <div class="table-wrap reveal">
+        <table class="compare-table">
+            <thead>
+                <tr>
+                    <th>Features</th>
+                    <th>Free</th>
+                    <th>Starter</th>
+                    <th style="color:#a5b4ff;">Growth ★</th>
+                    <th>Professional</th>
+                    <th>Enterprise</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Lead Management</td>
+                    <td><span class="tick">✓</span></td>
+                    <td><span class="tick">✓</span></td>
+                    <td class="pop-col"><span class="tick">✓</span></td>
+                    <td><span class="tick">✓</span></td>
+                    <td><span class="tick">✓</span></td>
+                </tr>
+                <tr>
+                    <td>Follow-up Management</td>
+                    <td><span class="tick">✓</span></td>
+                    <td><span class="tick">✓</span></td>
+                    <td class="pop-col"><span class="tick">✓</span></td>
+                    <td><span class="tick">✓</span></td>
+                    <td><span class="tick">✓</span></td>
+                </tr>
+                <tr>
+                    <td>Sales Pipeline</td>
+                    <td><span class="cross">✗</span></td>
+                    <td><span class="tick">✓</span></td>
+                    <td class="pop-col"><span class="tick">✓</span></td>
+                    <td><span class="tick">✓</span></td>
+                    <td><span class="tick">✓</span></td>
+                </tr>
+                <tr>
+                    <td>Mobile CRM</td>
+                    <td><span class="cross">✗</span></td>
+                    <td><span class="tick">✓</span></td>
+                    <td class="pop-col"><span class="tick">✓</span></td>
+                    <td><span class="tick">✓</span></td>
+                    <td><span class="tick">✓</span></td>
+                </tr>
+                <tr>
+                    <td>Reports</td>
+                    <td>Basic</td>
+                    <td>Basic</td>
+                    <td class="pop-col">Advanced</td>
+                    <td>Advanced</td>
+                    <td>Custom</td>
+                </tr>
+                <tr>
+                    <td>Workflow Automation</td>
+                    <td><span class="cross">✗</span></td>
+                    <td><span class="cross">✗</span></td>
+                    <td class="pop-col"><span class="tick">✓</span></td>
+                    <td><span class="tick">✓</span></td>
+                    <td><span class="tick">✓</span></td>
+                </tr>
+                <tr>
+                    <td>Integrations</td>
+                    <td><span class="cross">✗</span></td>
+                    <td><span class="cross">✗</span></td>
+                    <td class="pop-col">Basic</td>
+                    <td>Advanced</td>
+                    <td>Custom</td>
+                </tr>
+                <tr>
+                    <td>Support</td>
+                    <td>Email</td>
+                    <td>Email</td>
+                    <td class="pop-col">Priority</td>
+                    <td>Priority</td>
+                    <td>Dedicated</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>*@
+
+<section>
+    <div class="tc reveal">
+        <div class="section-tag">Comparison</div>
+        <h2 class="section-title">Feature <span class="grad-text">Comparison</span></h2>
+        <p class="section-sub mx">See exactly what's included in each plan.</p>
+    </div>
+    <div class="table-wrap reveal">
+        <table class="compare-table">
+            <thead>
+                <tr>
+                    <th>Features</th>
+                    <th>Free</th>
+                    <th>Starter</th>
+                    @*<th style="color:#a5b4ff;">Growth <i class="fa-solid fa-star"></i></th>*@
+                    <th style="color:#a5b4ff;">
+                        Growth <i class="fa-solid fa-star"></i>
+                    </th>
+                    <th>Professional</th>
+                    <th>Enterprise</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Lead Management</td>
+                    <td><span class="tick"><i class="fa-solid fa-circle-check"></i></span></td>
+                    <td><span class="tick"><i class="fa-solid fa-circle-check"></i></span></td>
+                    <td class="pop-col"><span class="tick"><i class="fa-solid fa-circle-check"></i></span></td>
+                    <td><span class="tick"><i class="fa-solid fa-circle-check"></i></span></td>
+                    <td><span class="tick"><i class="fa-solid fa-circle-check"></i></span></td>
+                </tr>
+                <tr>
+                    <td>Follow-up Management</td>
+                    <td><span class="tick"><i class="fa-solid fa-circle-check"></i></span></td>
+                    <td><span class="tick"><i class="fa-solid fa-circle-check"></i></span></td>
+                    <td class="pop-col"><span class="tick"><i class="fa-solid fa-circle-check"></i></span></td>
+                    <td><span class="tick"><i class="fa-solid fa-circle-check"></i></span></td>
+                    <td><span class="tick"><i class="fa-solid fa-circle-check"></i></span></td>
+                </tr>
+                <tr>
+                    <td>Sales Pipeline</td>
+                    <td><span class="cross"><i class="fa-solid fa-circle-xmark"></i></span></td>
+                    <td><span class="tick"><i class="fa-solid fa-circle-check"></i></span></td>
+                    <td class="pop-col"><span class="tick"><i class="fa-solid fa-circle-check"></i></span></td>
+                    <td><span class="tick"><i class="fa-solid fa-circle-check"></i></span></td>
+                    <td><span class="tick"><i class="fa-solid fa-circle-check"></i></span></td>
+                </tr>
+                <tr>
+                    <td>Mobile CRM</td>
+                    <td><span class="cross"><i class="fa-solid fa-circle-xmark"></i></span></td>
+                    <td><span class="tick"><i class="fa-solid fa-circle-check"></i></span></td>
+                    <td class="pop-col"><span class="tick"><i class="fa-solid fa-circle-check"></i></span></td>
+                    <td><span class="tick"><i class="fa-solid fa-circle-check"></i></span></td>
+                    <td><span class="tick"><i class="fa-solid fa-circle-check"></i></span></td>
+                </tr>
+                <tr>
+                    <td>Reports</td>
+                    <td>Basic</td>
+                    <td>Basic</td>
+                    <td class="pop-col">Advanced</td>
+                    <td>Advanced</td>
+                    <td>Custom</td>
+                </tr>
+                <tr>
+                    <td>Workflow Automation</td>
+                    <td><span class="cross"><i class="fa-solid fa-circle-xmark"></i></span></td>
+                    <td><span class="cross"><i class="fa-solid fa-circle-xmark"></i></span></td>
+                    <td class="pop-col"><span class="tick"><i class="fa-solid fa-circle-check"></i></span></td>
+                    <td><span class="tick"><i class="fa-solid fa-circle-check"></i></span></td>
+                    <td><span class="tick"><i class="fa-solid fa-circle-check"></i></span></td>
+                </tr>
+                <tr>
+                    <td>Integrations</td>
+                    <td><span class="cross"><i class="fa-solid fa-circle-xmark"></i></span></td>
+                    <td><span class="cross"><i class="fa-solid fa-circle-xmark"></i></span></td>
+                    <td class="pop-col">Basic</td>
+                    <td>Advanced</td>
+                    <td>Custom</td>
+                </tr>
+                <tr>
+                    <td>Support</td>
+                    <td>Email</td>
+                    <td>Email</td>
+                    <td class="pop-col">Priority</td>
+                    <td>Priority</td>
+                    <td>Dedicated</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+<!-- WHY CHOOSE DIVINECRM PRICING -->
+<section class="sec-darker">
+    <div class="tc reveal">
+        <div class="section-tag">Why DivineCRM</div>
+        <h2 class="section-title">Why Choose <span class="grad-text">DivineCRM Pricing</span></h2>
+        <p class="section-sub mx">DivineCRM pricing is designed to help businesses adopt CRM easily. DivineCRM helps businesses grow without large upfront investments.</p>
+    </div>
+    <div class="grid g4">
+        <div class="adv-card reveal d1">
+            <div class="adv-icon blue">
+                <i class="fa-solid fa-arrows-rotate"></i>
+            </div>
+            <div class="adv-body"><h4>Flexible subscription plans</h4><p>Choose a plan that fits your current team size and upgrade as you grow.</p></div>
+        </div>
+        <div class="adv-card reveal d2">
+            <div class="adv-icon purple">
+                <i class="fa-solid fa-lock-open"></i>
+            </div>
+            <div class="adv-body"><h4>No long term contracts</h4><p>No lock-in. Cancel or change your plan anytime without penalties.</p></div>
+        </div>
+        <div class="adv-card reveal d3">
+            <div class="adv-icon cyan">
+                <i class="fa-solid fa-tags"></i>
+            </div>
+            <div class="adv-body"><h4>Affordable pricing model</h4><p>Premium CRM features at a price that suits every business size.</p></div>
+        </div>
+        <div class="adv-card reveal d4">
+            <div class="adv-icon pink">
+                <i class="fa-solid fa-chart-column"></i>
+            </div>
+            <div class="adv-body"><h4>Scalable user based pricing</h4><p>Pay only for the users you need. Scale up when your team expands.</p></div>
+        </div>
+    </div>
+</section>
+<!-- COMPARE EXCEL VS DIVINECRM -->
+<section class="sec-dark">
+    <div class="tc reveal">
+        <div class="section-tag">Why Switch</div>
+        <h2 class="section-title">Compare — Excel vs <span class="grad-text">DivineCRM</span></h2>
+        <p class="section-sub mx">Excel was never built for sales. DivineCRM is.</p>
+    </div>
+    <div class="compare-grid">
+        <div class="compare-card bad reveal reveal-left">
+            @*<div class="compare-title"><span style="font-size:22px;">📊</span> Excel Challenges</div>*@
+            <div class="compare-title">
+                <span class="cmp-icon"><i class="fa-solid fa-file-excel"></i></span>
+                Excel Challenges
+            </div>
+            <ul class="compare-list">
+                <li><span class="xi"><i class="fa-solid fa-circle-xmark"></i></span> No follow-up reminders</li>
+                <li><span class="xi"><i class="fa-solid fa-circle-xmark"></i></span> No team tracking</li>
+                <li><span class="xi"><i class="fa-solid fa-circle-xmark"></i></span> Manual updates</li>
+                <li><span class="xi"><i class="fa-solid fa-circle-xmark"></i></span> Data duplication</li>
+            </ul>
+        </div>
+        <div class="compare-card good reveal reveal-right">
+            @*<div class="compare-title"><span style="font-size:22px;">✨</span> DivineCRM Advantages</div>*@
+            <div class="compare-title">
+                <span class="cmp-icon"><i class="fa-solid fa-star"></i> </span>
+                DivineCRM Advantages
+            </div>
+            <ul class="compare-list">
+                <li><span class="ci"><i class="fa-solid fa-circle-check"></i></span> Automated reminders</li>
+                <li><span class="ci"><i class="fa-solid fa-circle-check"></i></span> Team visibility</li>
+                <li><span class="ci"><i class="fa-solid fa-circle-check"></i></span> Real time updates</li>
+                <li><span class="ci"><i class="fa-solid fa-circle-check"></i></span> Smart reporting</li>
+            </ul>
+            <div class="compare-links">
+                <a href="#" class="comp-link">Features Page</a>
+                <a href="#" class="comp-link">Lead Management</a>
+                <a href="#" class="comp-link">Sales Pipeline</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ROI SECTION -->
+<section>
+    <div class="tc reveal">
+        <div class="section-tag">ROI</div>
+        <h2 class="section-title">How DivineCRM <span class="grad-text">Delivers ROI</span></h2>
+        <p class="section-sub mx">Businesses using DivineCRM typically experience measurable improvements. DivineCRM helps businesses improve revenue growth.</p>
+    </div>
+    <div class="grid g4" style="margin-top:50px;">
+        <div class="roi-card reveal d1"><span class="roi-icon">    <i class="fa-solid fa-chart-line"></i></span><h4>Improved lead conversion</h4><p>Convert more leads into paying customers with systematic follow-ups.</p></div>
+        <div class="roi-card reveal d2"><span class="roi-icon"> <i class="fa-solid fa-users"></i></span><h4>Increased team productivity</h4><p>Eliminate manual work so your team can focus entirely on selling.</p></div>
+        <div class="roi-card reveal d3"><span class="roi-icon">  <i class="fa-solid fa-clock"></i></span><h4>Reduced follow-up delays</h4><p>Automated reminders ensure every lead is contacted at the right time.</p></div>
+        <div class="roi-card reveal d4"><span class="roi-icon"> <i class="fa-solid fa-gem"></i></span><h4>Better customer engagement</h4><p>Deliver timely, personalized responses that customers love.</p></div>
+    </div>
+</section>
+<!-- FAQ -->
+<section class="sec-darker">
+    <div class="tc reveal">
+        <div class="section-tag">FAQ</div>
+        <h2 class="section-title">Frequently Asked <span class="grad-text">Pricing Questions</span></h2>
+    </div>
+    <div class="faq-list">
+        <div class="faq-item reveal d1">
+            <div class="faq-q">Is there a free trial? <span class="faq-arrow">▾</span></div>
+            <div class="faq-a"><p>Yes, DivineCRM offers a free trial for evaluation.</p></div>
+        </div>
+        <div class="faq-item reveal d2">
+            <div class="faq-q">Can I upgrade anytime? <span class="faq-arrow">▾</span></div>
+            <div class="faq-a"><p>Yes, plans can be upgraded anytime.</p></div>
+        </div>
+        <div class="faq-item reveal d3">
+            <div class="faq-q">Is training included? <span class="faq-arrow">▾</span></div>
+            <div class="faq-a"><p>Yes, onboarding and training support is provided.</p></div>
+        </div>
+        <div class="faq-item reveal d4">
+            <div class="faq-q">Are there hidden charges? <span class="faq-arrow">▾</span></div>
+            <div class="faq-a"><p>No, DivineCRM pricing is transparent.</p></div>
+        </div>
+    </div>
+</section>
+<!-- FINAL CTA -->
+<section class="final-cta">
+    <div class="cta-orb1"></div>
+    <div class="cta-orb2"></div>
+    <div class="reveal">
+        <div class="section-tag" style="margin-bottom:20px;">Get Started Today</div>
+        <h2>Start Using <span class="grad-text">DivineCRM Today</span></h2>
+        <p>Choose the right plan and start managing leads and sales efficiently.</p>
+        <div class="cta-btns">
+            <a href="#" class="btn-primary" style="font-size:16px; padding:16px 36px;">Start Free Trial</a>
+            <a href="/Home/BookFreeDemo" class="btn-outline" style="font-size:16px; padding:16px 36px;">Book Free Demo</a>
+        </div>
+    </div>
+</section>
+<script>const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+
+    window.addEventListener('scroll', () => {
+        const nav = document.getElementById('navbar');
+        if (nav) nav.style.background = window.scrollY > 50 ? 'rgba(8,9,13,0.97)' : 'rgba(8,9,13,0.85)';
+    });
+
+    document.querySelectorAll('.faq-q').forEach(q => {
+        q.addEventListener('click', () => {
+            const item = q.parentElement;
+            const isOpen = item.classList.contains('open');
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+            if (!isOpen) item.classList.add('open');
+        });
+    });
+
+    document.querySelectorAll('.price-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const r = card.getBoundingClientRect();
+            const x = ((e.clientX - r.left) / r.width) * 100;
+            const y = ((e.clientY - r.top) / r.height) * 100;
+            if (!card.classList.contains('popular')) {
+                card.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(79,110,247,0.09) 0%, rgba(255,255,255,0.03) 60%)`;
+            }
+        });
+        card.addEventListener('mouseleave', () => {
+            if (!card.classList.contains('popular')) {
+                card.style.background = 'rgba(255,255,255,0.03)';
+            }
+        });
+    });</script>

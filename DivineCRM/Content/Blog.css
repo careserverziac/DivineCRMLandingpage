@@ -1,0 +1,467 @@
+﻿
+/* UNIQUE PAGE WRAPPER */
+.crmblog-page {
+    --bg: #08090d;
+    --bg2: #0d0f18;
+    --text: #f0f2ff;
+    --muted: #8892b0;
+    --grad: linear-gradient(135deg,#4f6ef7,#7c3aed);
+    background: var(--bg);
+    color: var(--text);
+}
+
+/* HERO */
+.crmblog-page .blog-hero {
+    position: relative;
+    text-align: center;
+    padding: 130px 5% 80px;
+}
+
+.crmblog-page .hero-content {
+    max-width: 800px;
+    margin: auto;
+    position: relative;
+    z-index: 2;
+}
+
+.crmblog-page .hero-badge {
+    display: inline-block;
+    background: rgba(79,110,247,0.12);
+    border: 1px solid rgba(79,110,247,0.3);
+    padding: 6px 16px;
+    border-radius: 30px;
+    color: #a5b4ff;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.crmblog-page .blog-hero h1 {
+    font-size: clamp(34px,5vw,58px);
+    font-weight: 800;
+}
+
+.crmblog-page .grad-text {
+    background: var(--grad);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.crmblog-page .blog-hero p {
+    color: var(--muted);
+    margin-top: 15px;
+}
+
+/* BACKGROUND ORBS */
+.crmblog-page .mesh-bg {
+    position: absolute;
+    inset: 0;
+}
+
+.crmblog-page .mesh-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: .2;
+}
+
+.crmblog-page .orb1 {
+    width: 500px;
+    height: 500px;
+    background: #4f6ef7;
+    top: -150px;
+    left: -100px;
+}
+
+.crmblog-page .orb2 {
+    width: 500px;
+    height: 500px;
+    background: #7c3aed;
+    right: -120px;
+}
+
+/* BLOG GRID */
+.crmblog-page .blog-section {
+    padding: 40px 5% 100px;
+}
+
+.crmblog-page .blog-grid {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+    gap: 28px;
+}
+.crmblog-page .blog-section .crmblog-card{
+    margin-top: -80px; /* adjust: -50px, -100px as needed */
+}
+/* CARD */
+.crmblog-page .blog-card {
+    position: relative;
+    border-radius: 18px;
+    overflow: hidden;
+    text-decoration: none;
+    color: white;
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: border .25s ease, transform .2s ease !important;
+}
+
+    .crmblog-page .blog-card:hover {
+        transform: translateY(-4px) !important;
+        border: 1px solid #4f6ef7 !important;
+    }
+
+/* GRADIENT BACKGROUNDS */
+.crmblog-page .card-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,#4f6ef7,#7c3aed);
+    opacity: .15;
+}
+
+    .crmblog-page .card-bg.alt {
+        background: linear-gradient(135deg,#06b6d4,#4f6ef7);
+    }
+
+    .crmblog-page .card-bg.third {
+        background: linear-gradient(135deg,#7c3aed,#ec4899);
+    }
+
+/* CONTENT */
+.crmblog-page .card-content {
+    position: relative;
+    padding: 28px;
+}
+
+.crmblog-page .tag {
+    font-size: 12px;
+    color: #a5b4ff;
+}
+
+.crmblog-page .blog-card h3 {
+    margin: 10px 0;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.crmblog-page .blog-card p {
+    font-size: 14px;
+    color: var(--muted);
+}
+
+.crmblog-page .meta {
+    margin-top: 14px;
+    font-size: 12px;
+    color: #a5b4ff;
+}
+
+/* ANIMATION */
+.crmblog-page .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: .7s;
+}
+
+    .crmblog-page .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+/* PAGE SCOPE */
+.crmblog-page {
+    --bg: #0b0d14;
+    --card: #121524;
+    --border: rgba(255,255,255,0.06);
+    --text: #e6e9f2;
+    --muted: #9aa3b2;
+}
+
+/* GRID */
+.crmblog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 40px;
+}
+
+
+
+/* CARD */
+.crmblog-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.35s ease;
+    display: block;
+    position: relative;
+}
+
+    /* 🔥 FIX: remove white hover/anchor flash */
+    .crmblog-card,
+    .crmblog-card:hover,
+    .crmblog-card:focus,
+    .crmblog-card:active {
+        background: var(--card) !important;
+        text-decoration: none;
+        outline: none;
+    }
+
+        /* HOVER */
+        .crmblog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        /* REMOVE ANY GLOBAL OVERLAY ISSUES */
+        .crmblog-card::before,
+        .crmblog-card::after {
+            content: none !important;
+            display: none !important;
+        }
+
+/* TOP VISUAL */
+.crmblog-visual {
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    /* 🔥 flicker fix */
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+    /* FIX ICON BACKGROUND */
+    .crmblog-visual i {
+        background: transparent !important;
+        display: block;
+    }
+
+/* GRADIENTS */
+.gradient-1 {
+    background: linear-gradient(135deg, #4f6ef7, #7c3aed);
+}
+
+.gradient-2 {
+    background: linear-gradient(135deg, #06b6d4, #3b82f6);
+}
+
+.gradient-3 {
+    background: linear-gradient(135deg, #22c55e, #4ade80);
+}
+
+/* BODY */
+.crmblog-body {
+    padding: 22px;
+}
+
+.crmblog-tag {
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.crmblog-title {
+    font-size: 20px;
+    margin: 10px 0;
+    font-weight: 600;
+}
+
+.crmblog-text {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+/* FOOTER */
+.crmblog-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 18px;
+    font-size: 13px;
+    color: #cbd5f5;
+}
+
+/* HOVER TEXT EFFECT */
+.crmblog-card:hover .crmblog-title {
+    color: #7c9cff;
+}
+
+/* REVEAL ANIMATION */
+.crmblog-page .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+    .crmblog-page .reveal.visible {
+        opacity: 1;
+        transform: none;
+    }
+
+/* READ MORE BUTTON */
+.crmblog-btn {
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.3s ease;
+}
+
+/* HOVER EFFECT */
+.crmblog-card:hover .crmblog-btn {
+    background: linear-gradient(135deg, #1d4ed8, #2563eb);
+    transform: translateX(4px);
+}
+
+/* ICON ANIMATION */
+.crmblog-btn i {
+    transition: transform 0.3s ease;
+}
+
+.crmblog-card:hover .crmblog-btn i {
+    transform: translateX(4px);
+}
+
+/* TIME TEXT */
+.crmblog-time {
+    font-size: 13px;
+    color: #9aa3b2;
+}
+
+/* ================= MOBILE RESPONSIVE ================= */
+/* TABLET */
+@media (max-width: 1024px) {
+    .crmblog-page .blog-hero {
+        padding: 100px 5% 60px;
+    }
+
+    .crmblog-page .blog-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 22px;
+    }
+
+    .crmblog-page .mesh-orb {
+        filter: blur(60px);
+        opacity: .18;
+    }
+}
+@media (max-width: 992px) {
+    .crmblog-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .crmblog-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+    .crmblog-page .blog-hero {
+        padding: 90px 20px 50px;
+    }
+
+    .crmblog-page .hero-content {
+        max-width: 100%;
+    }
+
+    .crmblog-page .blog-hero h1 {
+        font-size: 30px;
+        line-height: 1.2;
+    }
+
+    .crmblog-page .blog-hero p {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .crmblog-page .hero-badge {
+        font-size: 11px;
+        padding: 5px 12px;
+    }
+
+    .crmblog-page .blog-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .crmblog-page .card-content {
+        padding: 22px;
+    }
+
+    .crmblog-page .blog-card h3 {
+        font-size: 18px;
+    }
+
+    .crmblog-page .blog-card p {
+        font-size: 13px;
+    }
+
+    /* Reduce orb size for mobile */
+    .crmblog-page .orb1,
+    .crmblog-page .orb2 {
+        width: 300px;
+        height: 300px;
+    }
+
+    .crmblog-page .orb1 {
+        top: -120px;
+        left: -80px;
+    }
+
+    .crmblog-page .orb2 {
+        right: -80px;
+    }
+}
+
+
+/* SMALL MOBILE */
+@media (max-width: 480px) {
+
+    .crmblog-page .blog-hero {
+        padding: 80px 15px 40px;
+    }
+
+        .crmblog-page .blog-hero h1 {
+            font-size: 26px;
+        }
+
+        .crmblog-page .blog-hero p {
+            font-size: 13px;
+        }
+
+    .crmblog-page .card-content {
+        padding: 18px;
+    }
+
+    .crmblog-page .blog-card {
+        border-radius: 14px;
+    }
+
+    .crmblog-page .meta {
+        font-size: 11px;
+    }
+
+    /* Further reduce background effects */
+    .crmblog-page .mesh-orb {
+        filter: blur(50px);
+        opacity: .15;
+    }
+}
+
+
