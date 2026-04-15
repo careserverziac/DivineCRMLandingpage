@@ -3,451 +3,7 @@
     ViewBag.Title = "Contact";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
-<style>
-    /* ── Contact Quick Stats ── */
-    .stat-badge {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        background: rgba(255,255,255,0.04);
-        border: 1px solid rgba(255,255,255,0.08);
-        border-radius: 14px;
-        padding: 18px 20px;
-    }
 
-    .stat-badge-icon {
-        width: 46px;
-        height: 46px;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 18px;
-        flex-shrink: 0;
-    }
-
-        .stat-badge-icon.blue {
-            background: rgba(79,110,247,0.15);
-            color: #6c8fff;
-        }
-
-        .stat-badge-icon.purple {
-            background: rgba(139,92,246,0.15);
-            color: #a78bfa;
-        }
-
-        .stat-badge-icon.cyan {
-            background: rgba(34,211,238,0.12);
-            color: #22d3ee;
-        }
-
-        .stat-badge-icon.pink {
-            background: rgba(244,114,182,0.12);
-            color: #f472b6;
-        }
-
-    .stat-badge-num {
-        font-size: 17px;
-        font-weight: 700;
-        color: #fff;
-        line-height: 1.2;
-    }
-
-    .stat-badge-label {
-        font-size: 12px;
-        color: rgba(255,255,255,0.45);
-        margin-top: 2px;
-    }
-
-    /* ── Two-column contact layout ── */
-    .contact-wrap {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 48px;
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 0 32px;
-        align-items: start;
-    }
-
-    .faq-item {
-        background: #111 !important;
-        border-radius: 12px !important;
-        margin-bottom: 16px !important;
-        overflow: hidden !important;
-        border: 1px solid rgba(255,255,255,0.06) !important;
-    }
-
-    .faq-q {
-        width: 100% !important;
-        display: flex !important;
-        justify-content: space-between !important;
-        align-items: center !important;
-        gap: 16px !important;
-        padding: 18px 20px !important;
-        background: transparent !important;
-        border: none !important;
-        font-size: 16px !important;
-        font-weight: 500 !important;
-        color: #fff !important;
-        cursor: pointer !important;
-        text-align: left !important;
-    }
-
-        .faq-q span:first-child {
-            flex: 1 !important;
-        }
-
-    .faq-icon {
-        min-width: 20px !important;
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-    }
-
-        .faq-icon i {
-            transition: transform 0.3s ease !important;
-        }
-
-    .faq-item.active .faq-icon i {
-        transform: rotate(180deg) !important;
-    }
-
-    .faq-a {
-        max-height: 0 !important;
-        overflow: hidden !important;
-        padding: 0 20px !important;
-        color: #bbb !important;
-        font-size: 15px !important;
-        line-height: 1.6 !important;
-        transition: all 0.35s ease !important;
-    }
-
-    .faq-item.active .faq-a {
-        max-height: 200px !important;
-        padding: 0 20px 18px !important;
-    }
-
-    @@media (max-width: 860px) {
-        .contact-wrap {
-            grid-template-columns: 1fr;
-            gap: 40px;
-        }
-    }
-
-    /* ── Channel cards (left) ── */
-    .channel-card {
-        display: flex;
-        gap: 16px;
-        align-items: flex-start;
-        padding: 20px;
-        background: rgba(255,255,255,0.03);
-        border: 1px solid rgba(255,255,255,0.07);
-        border-radius: 14px;
-        margin-bottom: 14px;
-        transition: border-color 0.25s, transform 0.25s;
-    }
-
-        .channel-card:hover {
-            border-color: rgba(79,110,247,0.4);
-            transform: translateY(-2px);
-        }
-
-    .channel-icon {
-        width: 46px;
-        height: 46px;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 18px;
-        flex-shrink: 0;
-    }
-
-        .channel-icon.blue {
-            background: rgba(79,110,247,0.15);
-            color: #6c8fff;
-        }
-
-        .channel-icon.purple {
-            background: rgba(139,92,246,0.15);
-            color: #a78bfa;
-        }
-
-        .channel-icon.cyan {
-            background: rgba(34,211,238,0.12);
-            color: #22d3ee;
-        }
-
-        .channel-icon.pink {
-            background: rgba(244,114,182,0.12);
-            color: #f472b6;
-        }
-
-    .channel-body h4 {
-        font-size: 15px;
-        font-weight: 600;
-        color: #fff;
-        margin: 0 0 4px;
-    }
-
-    .channel-body p {
-        font-size: 13px;
-        color: rgba(255,255,255,0.5);
-        margin: 0 0 10px;
-        line-height: 1.5;
-    }
-
-    .channel-link {
-        font-size: 13px;
-        color: #6c8fff;
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
-        transition: gap 0.2s, opacity 0.2s;
-    }
-
-        .channel-link:hover {
-            gap: 8px;
-            opacity: 0.85;
-        }
-
-    /* ── Contact form (right) ── */
-    .contact-form-wrap {
-        background: rgba(255,255,255,0.03);
-        border: 1px solid rgba(255,255,255,0.09);
-        border-radius: 20px;
-        padding: 36px 32px;
-    }
-
-    .contact-form-header h3 {
-        font-size: 22px;
-        font-weight: 700;
-        color: #fff;
-        margin: 0 0 6px;
-    }
-
-    .contact-form-header p {
-        font-size: 14px;
-        color: rgba(255,255,255,0.45);
-        margin: 0 0 28px;
-    }
-
-    .form-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 16px;
-    }
-
-
-
-    @@media (max-width: 560px) {
-        .form-row {
-            grid-template-columns: 1fr;
-        }
-    }
-
-    .form-group {
-        margin-bottom: 18px;
-    }
-
-        .form-group label {
-            display: block;
-            font-size: 13px;
-            font-weight: 500;
-            color: rgba(255,255,255,0.65);
-            margin-bottom: 7px;
-        }
-
-        .form-group .req {
-            color: #f472b6;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 10px;
-            padding: 11px 14px;
-            font-size: 14px;
-            color: #fff;
-            outline: none;
-            transition: border-color 0.2s, background 0.2s;
-            box-sizing: border-box;
-            font-family: inherit;
-        }
-
-            .form-group input::placeholder,
-            .form-group textarea::placeholder {
-                color: rgba(255,255,255,0.25);
-            }
-
-            .form-group select option {
-                background: #12131a;
-                color: #fff;
-            }
-
-            .form-group input:focus,
-            .form-group select:focus,
-            .form-group textarea:focus {
-                border-color: rgba(79,110,247,0.6);
-                background: rgba(79,110,247,0.06);
-            }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 110px;
-        }
-
-    .form-note {
-        font-size: 12px;
-        color: rgba(255,255,255,0.3);
-        text-align: center;
-        margin-top: 14px;
-        margin-bottom: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 6px;
-    }
-
-    /* ── Office cards ── */
-    .office-card {
-        background: rgba(255,255,255,0.03);
-        border: 1px solid rgba(255,255,255,0.07);
-        border-radius: 16px;
-        padding: 24px 22px;
-        transition: border-color 0.25s, transform 0.25s;
-    }
-
-        .office-card:hover {
-            border-color: rgba(79,110,247,0.35);
-            transform: translateY(-3px);
-        }
-
-    .office-icon {
-        width: 46px;
-        height: 46px;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 18px;
-        margin-bottom: 14px;
-    }
-
-        .office-icon.blue {
-            background: rgba(79,110,247,0.15);
-            color: #6c8fff;
-        }
-
-        .office-icon.purple {
-            background: rgba(139,92,246,0.15);
-            color: #a78bfa;
-        }
-
-        .office-icon.cyan {
-            background: rgba(34,211,238,0.12);
-            color: #22d3ee;
-        }
-
-        .office-icon.pink {
-            background: rgba(244,114,182,0.12);
-            color: #f472b6;
-        }
-
-    .office-card h4 {
-        font-size: 16px;
-        font-weight: 600;
-        color: #fff;
-        margin: 0 0 8px;
-    }
-
-    .office-card p {
-        font-size: 13px;
-        color: rgba(255,255,255,0.5);
-        margin: 0;
-        line-height: 1.65;
-    }
-
-    /* ── Social pills ── */
-    .social-pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        background: rgba(255,255,255,0.06);
-        border: 1px solid rgba(255,255,255,0.1);
-        border-radius: 20px;
-        padding: 5px 12px;
-        font-size: 12px;
-        color: rgba(255,255,255,0.65);
-        text-decoration: none;
-        transition: background 0.2s, color 0.2s;
-    }
-
-        .social-pill:hover {
-            background: rgba(79,110,247,0.2);
-            color: #fff;
-            border-color: rgba(79,110,247,0.4);
-        }
-
-    /* ── FAQ ── */
-    .faq-item {
-        border-bottom: 1px solid rgba(255,255,255,0.07);
-        padding: 4px 0;
-    }
-
-    .faq-q {
-        width: 100%;
-        background: none;
-        border: none;
-        color: rgba(255,255,255,0.85);
-        font-size: 15px;
-        font-weight: 500;
-        text-align: left;
-        padding: 18px 0;
-        cursor: pointer;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 12px;
-        font-family: inherit;
-        transition: color 0.2s;
-    }
-
-        .faq-q:hover {
-            color: #fff;
-        }
-
-    .faq-icon {
-        color: rgba(255,255,255,0.35);
-        transition: transform 0.3s;
-        font-size: 13px;
-    }
-
-    .faq-q.open .faq-icon {
-        transform: rotate(180deg);
-        color: #6c8fff;
-    }
-
-    .faq-a {
-        max-height: 0;
-        overflow: hidden;
-        font-size: 14px;
-        color: rgba(255,255,255,0.5);
-        line-height: 1.7;
-        transition: max-height 0.35s ease, padding 0.3s;
-        padding: 0;
-    }
-
-        .faq-a.open {
-            max-height: 200px;
-            padding-bottom: 16px;
-        }
-</style>
 <!-- CONTACT HERO -->
 <section class="hero" style="min-height:320px; padding: 80px 0 60px;">
     <div class="mesh-bg">
@@ -529,7 +85,7 @@
                 <div class="channel-body">
                     <h4>WhatsApp Support</h4>
                     <p>Chat with our team instantly on WhatsApp for quick queries and support.</p>
-                    <a href="https://wa.me/919999999999" target="_blank" class="channel-link">Chat on WhatsApp <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="https://wa.me/919972595464" target="_blank" class="channel-link">Chat on WhatsApp <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
             <div class="channel-card reveal d4">
@@ -537,7 +93,7 @@
                 <div class="channel-body">
                     <h4>Call Us</h4>
                     <p>Speak directly to a DivineCRM specialist. Available Mon–Sat, 9am–7pm.</p>
-                    <a href="tel:+919999999999" class="channel-link">+91 99999 99999 <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="tel:+919972595464" class="channel-link">+919972595464 <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -554,22 +110,22 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label for="fullName">Full Name <span class="req">*</span></label>
-                        <input type="text" id="fullName" name="FullName" placeholder="Rahul Sharma" required />
+                        <input type="text" id="fullName" name="FullName" placeholder="Enter your Full Name" required />
                     </div>
                     <div class="form-group">
                         <label for="company">Company Name</label>
-                        <input type="text" id="company" name="Company" placeholder="Your Company Pvt. Ltd." />
+                        <input type="text" id="company" name="Company" placeholder="Enter your  Company Name" />
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
                         <label for="email">Work Email <span class="req">*</span></label>
-                        <input type="email" id="email" name="Email" placeholder="you@company.com" required />
+                        <input type="email" id="email" name="Email" placeholder="Enter your Email" required />
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone Number <span class="req">*</span></label>
-                        <input type="tel" id="phone" name="Phone" placeholder="+91 98765 43210" required />
+                        <input type="tel" id="phone" name="Phone" placeholder="Enter your Phone Number" required />
                     </div>
                 </div>
 
@@ -624,7 +180,7 @@
         <div class="office-card reveal d1">
             <div class="office-icon blue"><i class="fa-solid fa-building"></i></div>
             <h4>Head Office</h4>
-            @*<p>123, Business Hub, Sector 18<br>Noida, Uttar Pradesh – 201301</p>*@
+            <p>#5, 2nd Cross, Mission Road, Bengaluru, KA 560027</p>
             <a href="https://maps.google.com" target="_blank" class="channel-link" style="font-size:13px;">
                 Get Directions <i class="fa-solid fa-arrow-right"></i>
             </a>
@@ -632,14 +188,14 @@
         <div class="office-card reveal d2">
             <div class="office-icon purple"><i class="fa-solid fa-clock"></i></div>
             <h4>Working Hours</h4>
-            <p>Monday – Friday<br>9:00 AM – 7:00 PM IST</p>
-            <p style="margin-top:6px;">Saturday<br>10:00 AM – 4:00 PM IST</p>
+            <p>Monday –Saturday <br>9:00 AM – 7:00 PM IST</p>
+            @*<p style="margin-top:6px;">Saturday<br>10:00 AM – 6:00 PM IST</p>*@
         </div>
         <div class="office-card reveal d3">
             <div class="office-icon cyan"><i class="fa-solid fa-envelope-open-text"></i></div>
             <h4>Email Contacts</h4>
-            <p>Sales: <a href="mailto:sales@divinecrm.in" class="channel-link" style="font-size:13px;">sales@divinecrm.in</a></p>
-            <p style="margin-top:6px;">Support: <a href="mailto:support@divinecrm.in" class="channel-link" style="font-size:13px;">support@divinecrm.in</a></p>
+            <p>Sales: <a href="mailto:info@ziacsoft.com" class="channel-link" style="font-size:13px;">info@ziacsoft.com</a></p>
+            <p style="margin-top:6px;">Support: <a href="info@ziacsoft.com" class="channel-link" style="font-size:13px;">info@ziacsoft.com</a></p>
         </div>
         <div class="office-card reveal d4">
             <div class="office-icon pink"><i class="fa-brands fa-linkedin"></i></div>
