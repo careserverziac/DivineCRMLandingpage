@@ -1,0 +1,860 @@
+﻿
+@{
+    ViewBag.Title = "HowToImproveSale";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+
+<style>
+     :root {
+         --bg: #08090d;
+         --bg2: #0d0f18;
+         --bg3: #111420;
+         --card-border: rgba(255,255,255,0.07);
+         --accent: #4f6ef7;
+         --accent2: #7c3aed;
+         --grad: linear-gradient(135deg, #4f6ef7, #7c3aed);
+         --text: #f0f2ff;
+         --muted: #8892b0;
+         --font: 'Outfit', sans-serif;
+         --font2: 'Plus Jakarta Sans', sans-serif;
+     }
+
+     body {
+         background: var(--bg);
+         color: var(--text);
+         font-family: var(--font2);
+         line-height: 1.7;
+         overflow-x: hidden;
+     }
+
+     /* Reveal Animations */
+     .reveal {
+         opacity: 0;
+         transform: translateY(35px);
+         transition: opacity .7s ease, transform .7s ease;
+     }
+
+         .reveal.visible {
+             opacity: 1;
+             transform: translateY(0);
+         }
+
+     /* Hero Section */
+     .blog-hero {
+         position: relative;
+         overflow: hidden;
+         padding: 130px 5% 70px;
+         text-align: center;
+     }
+
+     .mesh-bg {
+         position: absolute;
+         inset: 0;
+         pointer-events: none;
+     }
+
+     .mesh-orb {
+         position: absolute;
+         border-radius: 50%;
+         filter: blur(80px);
+         opacity: .18;
+     }
+
+     .orb1 {
+         width: 600px;
+         height: 600px;
+         background: #4f6ef7;
+         top: -200px;
+         left: -100px;
+     }
+
+     .orb2 {
+         width: 500px;
+         height: 500px;
+         background: #7c3aed;
+         top: 0;
+         right: -150px;
+     }
+
+     .hero-badge {
+         display: inline-flex;
+         align-items: center;
+         gap: 8px;
+         background: rgba(79,110,247,0.12);
+         border: 1px solid rgba(79,110,247,0.3);
+         color: #a5b4ff;
+         padding: 6px 16px;
+         border-radius: 30px;
+         font-size: 13px;
+         margin-bottom: 24px;
+     }
+
+     .blog-hero h1 {
+         font-family: var(--font);
+         font-size: clamp(32px,4.5vw,58px);
+         font-weight: 800;
+         line-height: 1.12;
+     }
+
+     .grad-text {
+         background: linear-gradient(135deg,#4f6ef7 0%,#a78bfa 100%);
+         -webkit-background-clip: text;
+         -webkit-text-fill-color: transparent;
+     }
+
+     /* Article Layout */
+     .blog-layout {
+         display: grid;
+         grid-template-columns: 1fr 320px;
+         gap: 40px;
+         max-width: 1200px;
+         margin: 0 auto;
+         padding: 60px 5%;
+     }
+
+     .article-body {
+         min-width: 0;
+     }
+
+     .section-tag {
+         display: inline-block;
+         background: rgba(79,110,247,0.1);
+         border: 1px solid rgba(79,110,247,0.25);
+         color: #a5b4ff;
+         padding: 5px 14px;
+         border-radius: 20px;
+         font-size: 12px;
+         font-weight: 600;
+         text-transform: uppercase;
+         margin-bottom: 14px;
+     }
+
+     .art-h2 {
+         font-family: var(--font);
+         font-size: 28px;
+         font-weight: 800;
+         margin: 48px 0 14px;
+     }
+
+     .art-p {
+         color: var(--muted);
+         font-size: 15px;
+         margin-bottom: 16px;
+     }
+
+     /* Lists & Cards */
+     .art-list {
+         list-style: none;
+         display: flex;
+         flex-direction: column;
+         gap: 10px;
+         margin: 14px 0 24px;
+     }
+
+         .art-list li {
+             font-size: 14px;
+             color: var(--muted);
+             display: flex;
+             align-items: flex-start;
+             gap: 10px;
+         }
+
+             .art-list li::before {
+                 content: '';
+                 width: 7px;
+                 height: 7px;
+                 border-radius: 50%;
+                 background: var(--grad);
+                 flex-shrink: 0;
+                 margin-top: 7px;
+             }
+
+     .strategy-grid {
+         display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+         gap: 20px;
+         margin: 30px 0;
+     }
+
+     .strategy-card {
+         background: rgba(255,255,255,0.03);
+         border: 1px solid var(--card-border);
+         border-radius: 16px;
+         padding: 24px;
+         position: relative;
+     }
+
+         .strategy-card h3 {
+             font-family: var(--font);
+             font-size: 18px;
+             margin-bottom: 12px;
+             color: var(--text);
+         }
+
+     .card-num {
+         position: absolute;
+         top: 20px;
+         right: 20px;
+         font-size: 32px;
+         font-weight: 900;
+         color: rgba(79,110,247,0.1);
+     }
+
+     /* Comparison Blocks */
+     .art-compare {
+         display: grid;
+         grid-template-columns: 1fr 1fr;
+         gap: 16px;
+         margin: 24px 0;
+     }
+
+     .art-comp-card {
+         border-radius: 16px;
+         padding: 22px 24px;
+     }
+
+         .art-comp-card.bad {
+             background: rgba(239,68,68,0.05);
+             border: 1px solid rgba(239,68,68,0.18);
+         }
+
+         .art-comp-card.good {
+             background: rgba(79,110,247,0.06);
+             border: 1px solid rgba(79,110,247,0.28);
+         }
+
+     /* Sidebar */
+     .blog-sidebar {
+         position: sticky;
+         top: 90px;
+     }
+
+     .sidebar-cta {
+         background: rgba(79,110,247,0.08);
+         border: 1px solid rgba(79,110,247,0.3);
+         border-radius: 16px;
+         padding: 24px 20px;
+         text-align: center;
+     }
+
+     .btn-primary {
+         display: block;
+         background: var(--grad);
+         color: white;
+         padding: 12px 20px;
+         border-radius: 30px;
+         font-weight: 700;
+         text-decoration: none;
+         margin-top: 15px;
+     }
+
+
+     /* =========================
+    HT SIDEBAR (ISOLATED)
+    ========================= */
+
+     .ht-sidebar {
+         position: sticky;
+         top: 90px;
+         display: flex;
+         flex-direction: column;
+         gap: 20px;
+     }
+
+     /* CARD */
+     .ht-card {
+         background: rgba(255,255,255,0.03);
+         border: 1px solid rgba(255,255,255,0.07);
+         border-radius: 16px;
+         padding: 20px;
+     }
+
+     /* TITLE */
+     .ht-title {
+         font-size: 14px;
+         font-weight: 700;
+         margin-bottom: 14px;
+         color: #f0f2ff;
+     }
+
+     /* CTA */
+     .ht-cta {
+         background: rgba(79,110,247,0.08);
+         border: 1px solid rgba(79,110,247,0.3);
+         border-radius: 16px;
+         padding: 22px;
+         text-align: center;
+     }
+
+         .ht-cta h4 {
+             font-size: 16px;
+             font-weight: 800;
+             margin-bottom: 6px;
+         }
+
+         .ht-cta p {
+             font-size: 13px;
+             color: #8892b0;
+             margin-bottom: 14px;
+         }
+
+     /* BUTTONS */
+     .ht-btn-primary {
+         display: block;
+         background: linear-gradient(135deg, #4f6ef7, #7c3aed);
+         color: #fff;
+         padding: 12px;
+         border-radius: 25px;
+         text-align: center;
+         margin-bottom: 10px;
+         text-decoration: none;
+         font-weight: 700;
+         transition: .2s;
+     }
+
+         .ht-btn-primary:hover {
+             transform: translateY(-2px);
+             box-shadow: 0 10px 30px rgba(79,110,247,0.4);
+         }
+
+     .ht-btn-outline {
+         display: block;
+         border: 1px solid rgba(255,255,255,0.2);
+         padding: 10px;
+         text-align: center;
+         border-radius: 25px;
+         color: #fff;
+         text-decoration: none;
+         transition: .2s;
+     }
+
+         .ht-btn-outline:hover {
+             border-color: rgba(79,110,247,0.5);
+             background: rgba(79,110,247,0.08);
+         }
+
+     /* TOC */
+     .ht-toc {
+         list-style: none;
+         display: flex;
+         flex-direction: column;
+         gap: 8px;
+     }
+
+         .ht-toc a {
+             font-size: 13px;
+             color: #8892b0;
+             text-decoration: none;
+             display: flex;
+             align-items: center;
+             gap: 8px;
+             transition: .2s;
+         }
+
+             .ht-toc a span {
+                 width: 5px;
+                 height: 5px;
+                 border-radius: 50%;
+                 background: linear-gradient(135deg, #4f6ef7, #7c3aed);
+             }
+
+             .ht-toc a:hover {
+                 color: #a5b4ff;
+                 transform: translateX(4px);
+             }
+
+     /* RELATED */
+     .ht-related {
+         list-style: none;
+         display: flex;
+         flex-direction: column;
+         gap: 10px;
+     }
+
+         .ht-related a {
+             font-size: 13px;
+             color: #8892b0;
+             text-decoration: none;
+             display: flex;
+             gap: 8px;
+         }
+
+             .ht-related a::before {
+                 content: '→';
+                 color: #4f6ef7;
+             }
+
+             .ht-related a:hover {
+                 color: #a5b4ff;
+             }
+
+     /* TAGS */
+     .ht-tags {
+         display: flex;
+         flex-wrap: wrap;
+         gap: 6px;
+     }
+
+         .ht-tags span {
+             background: rgba(79,110,247,0.1);
+             border: 1px solid rgba(79,110,247,0.2);
+             color: #a5b4ff;
+             padding: 4px 10px;
+             border-radius: 20px;
+             font-size: 12px;
+         }
+     /* =========================
+    HT FINAL CTA (SCOPED)
+    ========================= */
+
+     .ht-final-cta {
+         background: #0d0f18;
+         text-align: center;
+         padding: 100px 5%;
+         position: relative;
+         overflow: hidden;
+     }
+
+         /* ORBS */
+         .ht-final-cta .cta-orb1,
+         .ht-final-cta .cta-orb2 {
+             position: absolute;
+             border-radius: 50%;
+             filter: blur(100px);
+             opacity: .12;
+         }
+
+         .ht-final-cta .cta-orb1 {
+             width: 400px;
+             height: 400px;
+             background: #4f6ef7;
+             top: -100px;
+             left: -100px;
+         }
+
+         .ht-final-cta .cta-orb2 {
+             width: 400px;
+             height: 400px;
+             background: #7c3aed;
+             bottom: -100px;
+             right: -100px;
+         }
+
+         /* CONTENT */
+         .ht-final-cta h2 {
+             font-family: 'Outfit', sans-serif;
+             font-size: clamp(32px, 5vw, 56px);
+             font-weight: 800;
+         }
+
+         .ht-final-cta p {
+             color: #8892b0;
+             font-size: 16px;
+             margin: 16px auto 36px;
+             max-width: 520px;
+         }
+
+         /* BUTTONS */
+         .ht-final-cta .cta-btns {
+             display: flex;
+             justify-content: center;
+             gap: 16px;
+             flex-wrap: wrap;
+         }
+
+         .ht-final-cta .btn-cta-primary {
+             background: linear-gradient(135deg, #4f6ef7, #7c3aed);
+             color: #fff;
+             padding: 14px 30px;
+             border-radius: 30px;
+             font-weight: 700;
+             text-decoration: none;
+             transition: .2s;
+         }
+
+             .ht-final-cta .btn-cta-primary:hover {
+                 transform: translateY(-2px);
+                 box-shadow: 0 10px 30px rgba(79,110,247,0.5);
+             }
+
+         .ht-final-cta .btn-cta-outline {
+             border: 1px solid rgba(255,255,255,0.2);
+             color: #fff;
+             padding: 14px 30px;
+             border-radius: 30px;
+             text-decoration: none;
+             transition: .2s;
+         }
+
+             .ht-final-cta .btn-cta-outline:hover {
+                 border-color: rgba(79,110,247,0.6);
+                 background: rgba(79,110,247,0.08);
+             }
+
+    /* ===============================
+   HOVER EFFECT (BORDER ONLY)
+   =============================== */
+
+    /* Strategy Cards */
+    .strategy-card {
+        transition: border .25s ease, transform .2s ease;
+    }
+
+        .strategy-card:hover {
+            border: 1px solid #4f6ef7;
+            transform: translateY(-3px);
+        }
+
+    /* Comparison Cards */
+    .art-comp-card {
+        transition: border .25s ease, transform .2s ease;
+    }
+
+        .art-comp-card:hover {
+            border: 1px solid #4f6ef7 !important;
+            transform: translateY(-3px);
+        }
+
+    /* Sidebar Cards */
+    .ht-card {
+        transition: border .25s ease, transform .2s ease;
+    }
+
+        .ht-card:hover {
+            border: 1px solid #4f6ef7;
+            transform: translateY(-3px);
+        }
+
+    /* CTA Card */
+    .ht-cta {
+        transition: border .25s ease, transform .2s ease;
+    }
+
+        .ht-cta:hover {
+            border: 1px solid #4f6ef7;
+            transform: translateY(-3px);
+        }
+
+
+    /* ===============================
+   INTRO CARD
+   =============================== */
+
+    .intro-card {
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 16px;
+        padding: 26px;
+        transition: border .25s ease, transform .2s ease;
+    }
+
+        /* HOVER (ONLY BORDER) */
+        .intro-card:hover {
+            border: 1px solid #4f6ef7 !important;
+            transform: translateY(-3px);
+        }
+
+     /* RESPONSIVE */
+     @@media (max-width:768px) {
+         .ht-final-cta {
+             padding: 70px 20px;
+         }
+
+             .ht-final-cta h2 {
+                 font-size: 28px;
+             }
+
+             .ht-final-cta .cta-btns {
+                 flex-direction: column;
+                 align-items: center;
+             }
+
+                 .ht-final-cta .cta-btns a {
+                     width: 100%;
+                     max-width: 260px;
+                 }
+     }
+     /* MOBILE */
+     @@media (max-width:1024px) {
+         .ht-sidebar {
+             position: static;
+         }
+     }
+
+     @@media (max-width:1024px) {
+         .blog-layout {
+             grid-template-columns: 1fr;
+         }
+
+         .art-compare {
+             grid-template-columns: 1fr;
+         }
+     }
+</style>
+
+<section class="blog-hero">
+    <div class="mesh-bg">
+        <div class="mesh-orb orb1"></div>
+        <div class="mesh-orb orb2"></div>
+    </div>
+    <div class="hero-badge">Sales Optimization</div>
+    <h1>How to Improve Sales Follow-Ups and <br><span class="grad-text">Close More Deals</span></h1>
+</section>
+
+<div class="blog-layout">
+    <article class="article-body">
+
+        @*<div class="reveal">
+            <p class="art-p">Sales follow-ups play a critical role in converting leads into customers. Many businesses lose potential deals not because of poor products or pricing, but because follow-ups are delayed, inconsistent, or completely missed.</p>
+            <p class="art-p">Improving your sales follow-up process can significantly increase conversion rates, improve customer relationships, and accelerate business growth.</p>
+            <p class="art-p">Using a CRM platform like <strong>DivineCRM</strong> helps businesses automate follow-ups, track customer interactions, and ensure every opportunity is properly managed.</p>
+        </div>*@
+        <div class="reveal intro-card">
+            <p class="art-p">Sales follow-ups play a critical role in converting leads into customers. Many businesses lose potential deals not because of poor products or pricing, but because follow-ups are delayed, inconsistent, or completely missed.</p>
+
+            <p class="art-p">Improving your sales follow-up process can significantly increase conversion rates, improve customer relationships, and accelerate business growth.</p>
+
+            <p class="art-p">Using a CRM platform like <strong>DivineCRM</strong> helps businesses automate follow-ups, track customer interactions, and ensure every opportunity is properly managed.</p>
+        </div>
+
+        <div class="reveal">
+            <div class="section-tag">Importance</div>
+            <h2 class="art-h2">Why Sales Follow-Ups Are Important</h2>
+            <p class="art-p">Most customers do not convert during the first interaction. They require multiple follow-ups before making a decision. Sales follow-ups help businesses:</p>
+            <ul class="art-list">
+                <li>Build customer trust</li>
+                <li>Address customer questions</li>
+                <li>Share additional information</li>
+                <li>Move deals forward</li>
+            </ul>
+            <p class="art-p"><strong>Businesses that follow up consistently close more deals.</strong></p>
+        </div>
+
+        <div class="reveal">
+            <div class="section-tag">Challenges</div>
+            <h2 class="art-h2">Common Sales Follow-Up Challenges</h2>
+            <div class="art-comp-card bad">
+                <p class="art-p" style="color:#ef4444; font-weight:bold;">Common Problems</p>
+                <ul class="art-list">
+                    <li>Forgetting to follow up</li>
+                    <li>Delayed customer responses</li>
+                    <li>No structured follow-up process</li>
+                    <li>No visibility into sales activities</li>
+                </ul>
+                <p class="art-p" style="font-size:13px;">These issues lead to lost opportunities and reduced conversions.</p>
+            </div>
+        </div>
+
+        <div class="reveal">
+            <div class="section-tag">Strategies</div>
+            <h2 class="art-h2">10 Ways to Improve Sales Follow-Ups</h2>
+            <p class="art-p">Here are proven strategies to improve follow-ups and increase sales.</p>
+
+            <div class="strategy-grid">
+                <div class="strategy-card">
+                    @*<div class="card-num">01</div>*@
+                    <h3>Respond to Leads Quickly</h3>
+                    <p class="art-p" style="font-size:13px;">Speed is critical. Respond within minutes and acknowledge inquiries to build confidence.</p>
+                </div>
+                <div class="strategy-card">
+                    @*<div class="card-num">02</div>*@
+                    <h3>Set Follow-Up Reminders</h3>
+                    <p class="art-p" style="font-size:13px;">Automate notifications to ensure consistency and track follow-up status effectively.</p>
+                </div>
+                <div class="strategy-card">
+                    @*<div class="card-num">03</div>*@
+                    <h3>Structured Follow-Up Process</h3>
+                    <p class="art-p" style="font-size:13px;">Flow: First contact response → Second follow-up call → Share proposal → Final follow-up.</p>
+                </div>
+                <div class="strategy-card">
+                    @*<div class="card-num">04</div>*@
+                    <h3>Track Customer Interactions</h3>
+                    <p class="art-p" style="font-size:13px;">Monitor call history, email tracking, and notes to personalize every interaction.</p>
+                </div>
+                <div class="strategy-card">
+                    @*<div class="card-num">05</div>*@
+                    <h3>Multiple Communication Channels</h3>
+                    <p class="art-p" style="font-size:13px;">Use phone calls, emails, WhatsApp messages, and scheduled meetings to increase rates.</p>
+                </div>
+                <div class="strategy-card">
+                    @*<div class="card-num">06</div>*@
+                    <h3>Personalize Follow-Ups</h3>
+                    <p class="art-p" style="font-size:13px;">Refer to previous conversations and address specific requirements to improve engagement.</p>
+                </div>
+                <div class="strategy-card">
+                    @*<div class="card-num">07</div>*@
+                    <h3>Follow-Up at the Right Time</h3>
+                    <p class="art-p" style="font-size:13px;">Schedule: within 24hrs, then 2 days, 5 days, and a final follow-up after 1 week.</p>
+                </div>
+                <div class="strategy-card">
+                    @*<div class="card-num">08</div>*@
+                    <h3>Assign Leads to Team Members</h3>
+                    <p class="art-p" style="font-size:13px;">Clear ownership ensures accountability, faster responses, and better tracking.</p>
+                </div>
+                <div class="strategy-card">
+                    @*<div class="card-num">09</div>*@
+                    <h3>Monitor Follow-Up Performance</h3>
+                    <p class="art-p" style="font-size:13px;">Track completion rates, response rates, and sales cycle duration to optimize results.</p>
+                </div>
+                <div class="strategy-card">
+                    @*<div class="card-num">10</div>*@
+                    <h3>Use CRM to Automate</h3>
+                    <p class="art-p" style="font-size:13px;">Simplify lead assignment, activity tracking, and scheduling with DivineCRM.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="reveal">
+            <h2 class="art-h2">Sales Follow-Up Best Practices</h2>
+            <div class="art-comp-card good">
+                <ul class="art-list">
+                    <li>Always schedule next follow-up</li>
+                    <li>Keep follow-ups consistent</li>
+                    <li>Track customer responses</li>
+                    <li>Use CRM for automation</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="reveal">
+            <div class="section-tag">Solutions</div>
+            <h2 class="art-h2">How CRM Improves Sales Follow-Ups</h2>
+            <p class="art-p">CRM software helps businesses manage follow-ups effectively by tracking leads, scheduling activities, and monitoring team performance. A simple CRM like <strong>DivineCRM</strong> helps businesses automate follow-ups and close deals faster.</p>
+        </div>
+
+        <div class="reveal">
+            <h2 class="art-h2">Signs Your Follow-Up Process Needs Improvement</h2>
+            <ul class="art-list">
+                <li>Leads are not converting</li>
+                <li>Follow-ups are missed</li>
+                <li>Sales cycle is long</li>
+                <li>Team productivity is low</li>
+            </ul>
+        </div>
+
+        <div class="reveal">
+            <div class="section-tag">ROI</div>
+            <h2 class="art-h2">Benefits of Improving Sales Follow-Ups</h2>
+            <div class="art-compare">
+                <div class="art-comp-card good">
+                    <ul class="art-list" style="margin:0;">
+                        <li>Increased conversion rates</li>
+                        <li>Faster deal closures</li>
+                    </ul>
+                </div>
+                <div class="art-comp-card good">
+                    <ul class="art-list" style="margin:0;">
+                        <li>Improved customer relationships</li>
+                        <li>Better sales performance</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="reveal">
+            <h2 class="art-h2">Final Thoughts</h2>
+            <p class="art-p">Sales follow-ups are essential for converting leads into customers. Businesses that implement structured follow-up processes improve conversions and customer engagement.</p>
+            <p class="art-p">Automating follow-ups using CRM helps ensure no opportunity is missed and sales teams stay organized. Using a CRM platform like <strong>DivineCRM</strong> helps businesses improve follow-ups, track customer interactions and close more deals.</p>
+        </div>
+
+    </article>
+
+    @*<aside class="blog-sidebar">
+            <div class="sidebar-cta reveal">
+                <h4 style="font-family:var(--font); font-size:16px; margin-bottom:8px;">Grow with DivineCRM</h4>
+                <p style="color:var(--muted); font-size:13px;">Automate your follow-ups and never miss a lead again.</p>
+                <a href="#" class="btn-primary">Start Free Trial</a>
+            </div>
+
+            <div style="margin-top:20px;" class="reveal">
+                <div class="section-tag" style="width:100%; text-align:center;">SEO Data</div>
+                <p style="font-size:12px; color:var(--muted); margin-top:10px;">
+                    <strong>Meta Title:</strong> How to Improve Sales Follow-Ups and Close More Deals<br><br>
+                    <strong>Meta Description:</strong> Learn how to improve sales follow-ups with proven strategies. Increase conversions, track leads and close deals faster using CRM.
+                </p>
+            </div>
+        </aside>*@
+    <aside class="blog-sidebar ht-sidebar">
+
+        <!-- CTA -->
+        <div class="ht-cta reveal">
+            <h4>Grow with DivineCRM</h4>
+            <p>Automate your follow-ups and never miss a lead again.</p>
+            <a href="#" class="ht-btn-primary">Start Free Trial</a>
+            <a href="/Home/BookFreeDemo" class="ht-btn-outline">Book Demo</a>
+        </div>
+
+        <!-- TOC -->
+        <div class="ht-card reveal">
+            <div class="ht-title">📋 Table of Contents</div>
+            <ul class="ht-toc">
+                <li><a href="#"><span></span>Importance</a></li>
+                <li><a href="#"><span></span>Challenges</a></li>
+                <li><a href="#"><span></span>Strategies</a></li>
+                <li><a href="#"><span></span>Best Practices</a></li>
+                <li><a href="#"><span></span>CRM Benefits</a></li>
+                <li><a href="#"><span></span>Final Thoughts</a></li>
+            </ul>
+        </div>
+
+        <!-- RELATED -->
+        <div class="ht-card reveal">
+            <div class="ht-title">🔗 Related Pages</div>
+            <ul class="ht-related">
+                <li><a href="/Home/Features">CRM Features</a></li>
+                <li><a href="/Home/Pricing">Pricing Plans</a></li>
+                <li><a href="/Home/LeadManagement">Lead Management</a></li>
+                <li><a href="/Home/Compare">CRM Comparison</a></li>
+            </ul>
+        </div>
+
+        <!-- TAGS -->
+        <div class="ht-card reveal">
+            <div class="ht-title">🏷️ Tags</div>
+            <div class="ht-tags">
+                <span>Sales</span>
+                <span>CRM</span>
+                <span>Follow-Ups</span>
+                <span>Lead Management</span>
+            </div>
+        </div>
+
+    </aside>
+</div>
+<!-- FINAL CTA -->
+<section class="final-cta ht-final-cta">
+    <div class="cta-orb1"></div>
+    <div class="cta-orb2"></div>
+
+    <div class="reveal">
+        <div class="section-tag" style="margin-bottom:20px;">Boost Your Sales</div>
+
+        <h2>Never Miss a Follow-Up with <span class="grad-text">DivineCRM</span></h2>
+
+        <p>
+            Automate your follow-ups, track every lead interaction, and close more deals faster.
+            Stay organized, improve response time, and turn more prospects into customers.
+        </p>
+
+        <div class="cta-btns">
+            <a href="/Home/BookFreeDemo" class="btn-cta-primary" style="font-size:16px; padding:16px 36px;">
+                Book Free Demo
+            </a>
+            <a href="#" class="btn-cta-outline" style="font-size:16px; padding:16px 36px;">
+                Start Free Trial
+            </a>
+        </div>
+    </div>
+</section>
+
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+

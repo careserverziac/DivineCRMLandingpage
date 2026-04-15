@@ -96,6 +96,21 @@ namespace DivineCRM.Controllers
             return View();
         }
 
+        public ActionResult SmallBusinesses()
+        {
+            return View();
+        }
+
+
+        public ActionResult CRMvsExcel() 
+        {
+            return View();
+        }
+
+        public ActionResult HowToImproveSale()
+        {
+            return View();
+        }
 
 
     }
