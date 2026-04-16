@@ -340,6 +340,54 @@
     color: #9aa3b2;
 }
 
+
+
+/* ===== BLOG FILTERS (SCOPED) ===== */
+.crmblog-page .crmblog-filters {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 30px 0;
+    padding: 10px;
+}
+
+/* base button */
+.crmblog-page .filter-btn {
+    background: rgba(255, 255, 255, 0.06);
+    color: #cfd6ff;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 10px 18px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+    /* hover */
+    .crmblog-page .filter-btn:hover {
+        transform: translateY(-2px);
+        border-color: rgba(124, 58, 237, 0.6);
+        background: rgba(124, 58, 237, 0.15);
+        color: #ffffff;
+    }
+
+    /* active tab */
+    .crmblog-page .filter-btn.active {
+        background: linear-gradient(135deg, #4f6ef7, #7c3aed);
+        color: #ffffff;
+        border: 1px solid transparent; /* KEEP BORDER */
+        box-shadow: 0 8px 20px rgba(79, 110, 247, 0.3);
+    }
+
+    .crmblog-page .filter-btn:focus {
+        outline: none;
+    }
+
+
 /* ================= MOBILE RESPONSIVE ================= */
 /* TABLET */
 @media (max-width: 1024px) {

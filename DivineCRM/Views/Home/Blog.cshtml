@@ -1,116 +1,266 @@
-﻿@{
+﻿@*@{
+        ViewBag.Title = "Blog";
+        Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    }
+
+    <div class="crmblog-page">
+
+            <section class="blog-hero">
+                <div class="mesh-bg">
+                    <div class="mesh-orb orb1"></div>
+                    <div class="mesh-orb orb2"></div>
+                </div>
+
+                <div class="hero-content">
+                    <div class="hero-badge">Insights & Resources</div>
+                    <h1>Learn CRM, Sales & <span class="grad-text">Business Growth</span></h1>
+                    <p>Explore expert guides on lead management, sales optimization and CRM strategies to grow your business.</p>
+                </div>
+            </section>
+
+
+            <section class="crmblog-section">
+                <div class="crmblog-grid">
+
+                    <!-- CARD 1 -->
+                    <a href="/Home/CRMvsExcel" class="crmblog-card reveal">
+                        <div class="crmblog-visual gradient-1">
+                            <i class="fas fa-table"></i>
+                        </div>
+
+                        <div class="crmblog-body">
+                            <span class="crmblog-tag">Comparison</span>
+                            <h3 class="crmblog-title">CRM vs Excel — Which is Better?</h3>
+                            <p class="crmblog-text">
+                                Compare CRM software and Excel for managing leads, follow-ups and sales growth.
+                            </p>
+
+
+                            <div class="crmblog-footer">
+                                <span class="crmblog-btn">
+                                    Read More <i class="fas fa-arrow-right"></i>
+                                </span>
+                                <span class="crmblog-time">
+                                    <i class="fas fa-clock"></i> 5 min
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- CARD 2 -->
+                    <a href="/Home/HowToImproveSale" class="crmblog-card reveal">
+                        <div class="crmblog-visual gradient-2">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+
+                        <div class="crmblog-body">
+                            <span class="crmblog-tag">Guide</span>
+                            <h3 class="crmblog-title">How to Improve Sales Follow-Ups</h3>
+                            <p class="crmblog-text">
+                                Learn proven strategies to improve follow-ups and close more deals faster.
+                            </p>
+
+
+                            <div class="crmblog-footer">
+                                <span class="crmblog-btn">
+                                    Read More <i class="fas fa-arrow-right"></i>
+                                </span>
+                                <span class="crmblog-time">
+                                    <i class="fas fa-clock"></i> 5 min
+                                </span>
+                            </div>
+
+                        </div>
+                    </a>
+
+                    <!-- CARD 3 -->
+                    <a href="/Home/SmallBusinesses" class="crmblog-card reveal">
+                        <div class="crmblog-visual gradient-3">
+                            <i class="fas fa-users"></i>
+                        </div>
+
+                        <div class="crmblog-body">
+                            <span class="crmblog-tag">CRM</span>
+                            <h3 class="crmblog-title">Why Your Business Needs a Sales CRM</h3>
+                            <p class="crmblog-text">
+                                Understand how CRM helps manage leads, automate tasks and increase revenue.
+                            </p>
+
+
+                            <div class="crmblog-footer">
+                                <span class="crmblog-btn">
+                                    Read More <i class="fas fa-arrow-right"></i>
+                                </span>
+                                <span class="crmblog-time">
+                                    <i class="fas fa-clock"></i> 5 min
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+            </section>
+
+        </div>
+
+        <script>
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.crmblog-page .reveal').forEach(el => observer.observe(el));
+        </script>*@
+@{
     ViewBag.Title = "Blog";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
 
 <div class="crmblog-page">
 
-        <section class="blog-hero">
-            <div class="mesh-bg">
-                <div class="mesh-orb orb1"></div>
-                <div class="mesh-orb orb2"></div>
-            </div>
+    <!-- HERO -->
+    <section class="blog-hero">
+        <div class="mesh-bg">
+            <div class="mesh-orb orb1"></div>
+            <div class="mesh-orb orb2"></div>
+        </div>
 
-            <div class="hero-content">
-                <div class="hero-badge">Insights & Resources</div>
-                <h1>Learn CRM, Sales & <span class="grad-text">Business Growth</span></h1>
-                <p>Explore expert guides on lead management, sales optimization and CRM strategies to grow your business.</p>
-            </div>
-        </section>
+        <div class="hero-content">
+            <div class="hero-badge">Insights & Resources</div>
+            <h1>Learn CRM, Sales & <span class="grad-text">Business Growth</span></h1>
+            <p>Explore expert guides on lead management, sales optimization and CRM strategies to grow your business.</p>
+        </div>
+    </section>
 
+    <!-- CATEGORY FILTER -->
+    <section class="crmblog-filters">
+        <button class="filter-btn active" data-filter="all">All Articles</button>
+        <button class="filter-btn" data-filter="smallbusiness">Small Business</button>
+        <button class="filter-btn" data-filter="crm">CRM</button>
+        <button class="filter-btn" data-filter="sales">Sales</button>
+    </section>
 
-        <section class="crmblog-section">
-            <div class="crmblog-grid">
+    <!-- BLOG GRID -->
+    <section class="crmblog-section">
+        <div class="crmblog-grid">
 
-                <!-- CARD 1 -->
-                <a href="/Home/CRMvsExcel" class="crmblog-card reveal">
-                    <div class="crmblog-visual gradient-1">
-                        <i class="fas fa-table"></i>
+            <!-- CARD 1 -->
+            <a href="/Home/CRMvsExcel"
+               class="crmblog-card reveal"
+               @*data-category="crm sales">*@
+               data-category="crm">
+
+                <div class="crmblog-visual gradient-1">
+                    <i class="fas fa-table"></i>
+                </div>
+
+                <div class="crmblog-body">
+                    <span class="crmblog-tag">Comparison</span>
+                    <h3 class="crmblog-title">CRM vs Excel — Which is Better?</h3>
+                    <p class="crmblog-text">
+                        Compare CRM software and Excel for managing leads, follow-ups and sales growth.
+                    </p>
+
+                    <div class="crmblog-footer">
+                        <span class="crmblog-btn">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </span>
+                        <span class="crmblog-time">
+                            <i class="fas fa-clock"></i> 5 min
+                        </span>
                     </div>
+                </div>
+            </a>
 
-                    <div class="crmblog-body">
-                        <span class="crmblog-tag">Comparison</span>
-                        <h3 class="crmblog-title">CRM vs Excel — Which is Better?</h3>
-                        <p class="crmblog-text">
-                            Compare CRM software and Excel for managing leads, follow-ups and sales growth.
-                        </p>
+            <!-- CARD 2 -->
+            <a href="/Home/HowToImproveSale"
+               class="crmblog-card reveal"
+               data-category="sales">
 
+                <div class="crmblog-visual gradient-2">
+                    <i class="fas fa-bullseye"></i>
+                </div>
 
-                        <div class="crmblog-footer">
-                            <span class="crmblog-btn">
-                                Read More <i class="fas fa-arrow-right"></i>
-                            </span>
-                            <span class="crmblog-time">
-                                <i class="fas fa-clock"></i> 5 min
-                            </span>
-                        </div>
+                <div class="crmblog-body">
+                    <span class="crmblog-tag">Guide</span>
+                    <h3 class="crmblog-title">How to Improve Sales Follow-Ups</h3>
+                    <p class="crmblog-text">
+                        Learn proven strategies to improve follow-ups and close more deals faster.
+                    </p>
+
+                    <div class="crmblog-footer">
+                        <span class="crmblog-btn">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </span>
+                        <span class="crmblog-time">
+                            <i class="fas fa-clock"></i> 5 min
+                        </span>
                     </div>
-                </a>
+                </div>
+            </a>
 
-                <!-- CARD 2 -->
-                <a href="/Home/HowToImproveSale" class="crmblog-card reveal">
-                    <div class="crmblog-visual gradient-2">
-                        <i class="fas fa-bullseye"></i>
+            <!-- CARD 3 -->
+            <a href="/Home/SmallBusinesses"
+               class="crmblog-card reveal"
+               @*data-category="smallbusiness crm">*@
+               data-category="smallbusiness">
+
+                <div class="crmblog-visual gradient-3">
+                    <i class="fas fa-users"></i>
+                </div>
+
+                <div class="crmblog-body">
+                    <span class="crmblog-tag">CRM</span>
+                    <h3 class="crmblog-title">Why Your Business Needs a Sales CRM</h3>
+                    <p class="crmblog-text">
+                        Understand how CRM helps manage leads, automate tasks and increase revenue.
+                    </p>
+
+                    <div class="crmblog-footer">
+                        <span class="crmblog-btn">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </span>
+                        <span class="crmblog-time">
+                            <i class="fas fa-clock"></i> 5 min
+                        </span>
                     </div>
+                </div>
+            </a>
 
-                    <div class="crmblog-body">
-                        <span class="crmblog-tag">Guide</span>
-                        <h3 class="crmblog-title">How to Improve Sales Follow-Ups</h3>
-                        <p class="crmblog-text">
-                            Learn proven strategies to improve follow-ups and close more deals faster.
-                        </p>
+        </div>
+    </section>
+</div>
 
+<!-- SCRIPT -->
+<script>
+    const buttons = document.querySelectorAll(".filter-btn");
+    const cards = document.querySelectorAll(".crmblog-card");
 
-                        <div class="crmblog-footer">
-                            <span class="crmblog-btn">
-                                Read More <i class="fas fa-arrow-right"></i>
-                            </span>
-                            <span class="crmblog-time">
-                                <i class="fas fa-clock"></i> 5 min
-                            </span>
-                        </div>
+    buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
 
-                    </div>
-                </a>
+            // active state
+            buttons.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
 
-                <!-- CARD 3 -->
-                <a href="/Home/SmallBusinesses" class="crmblog-card reveal">
-                    <div class="crmblog-visual gradient-3">
-                        <i class="fas fa-users"></i>
-                    </div>
+            const filter = btn.getAttribute("data-filter");
 
-                    <div class="crmblog-body">
-                        <span class="crmblog-tag">CRM</span>
-                        <h3 class="crmblog-title">Why Your Business Needs a Sales CRM</h3>
-                        <p class="crmblog-text">
-                            Understand how CRM helps manage leads, automate tasks and increase revenue.
-                        </p>
+            cards.forEach(card => {
+                const category = card.getAttribute("data-category");
 
-
-                        <div class="crmblog-footer">
-                            <span class="crmblog-btn">
-                                Read More <i class="fas fa-arrow-right"></i>
-                            </span>
-                            <span class="crmblog-time">
-                                <i class="fas fa-clock"></i> 5 min
-                            </span>
-                        </div>
-                    </div>
-                </a>
-
-            </div>
-        </section>
-
-    </div>
-
-    <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+                if (filter === "all") {
+                    card.style.display = "block";
+                }
+                else if (category && category.includes(filter)) {
+                    card.style.display = "block";
+                }
+                else {
+                    card.style.display = "none";
                 }
             });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.crmblog-page .reveal').forEach(el => observer.observe(el));
-    </script>
+        });
+    });
+</script>
