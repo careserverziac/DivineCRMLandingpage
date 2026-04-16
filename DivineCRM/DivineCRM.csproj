@@ -147,6 +147,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Compare.css" />
     <Content Include="Content\Contact.css" />
+    <Content Include="Content\CRMBenefitsForBusiness.css" />
     <Content Include="Content\CRMvsExcel.css" />
     <Content Include="Content\DivineCRM_Landingpage.css" />
     <Content Include="Content\Features.css" />
@@ -162,6 +163,7 @@
     <Content Include="Content\Pricing.css" />
     <Content Include="Content\SignUp.css" />
     <Content Include="Content\SmallBusinesses.css" />
+    <Content Include="Content\WhatIsCRM.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -212,6 +214,8 @@
     <Content Include="Views\Home\SmallBusinesses.cshtml" />
     <Content Include="Views\Home\CRMvsExcel.cshtml" />
     <Content Include="Views\Home\HowToImproveSale.cshtml" />
+    <Content Include="Views\Home\CRMBenefitsForBusiness.cshtml" />
+    <Content Include="Views\Home\WhatIsCRM.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

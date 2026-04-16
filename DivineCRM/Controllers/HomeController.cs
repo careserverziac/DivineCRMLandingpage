@@ -112,6 +112,19 @@ namespace DivineCRM.Controllers
             return View();
         }
 
+        public ActionResult CRMBenefitsForBusiness()
+        {
+            return View();
+
+        }
+
+        public ActionResult WhatIsCRM() 
+        {
+            return View();
+
+        }
+
+
 
     }
 }
