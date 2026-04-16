@@ -1315,6 +1315,17 @@ footer {
     transform: translateY(-2px);
 }
 
+/* Remove white hover border everywhere */
+
+/* Fix navbar text cutting */
+nav a {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+
+
 /*@media (max-width:768px) {
     .hero-bullets {
         grid-template-columns: 1fr;
@@ -1580,4 +1591,18 @@ footer {
     .steps-grid::before {
         display: none !important;
     }
+}
+
+
+/* Remove only unwanted focus highlight — NOT styles */
+a:focus,
+a:active,
+a:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Remove mobile tap highlight */
+a, button {
+    -webkit-tap-highlight-color: transparent;
 }
