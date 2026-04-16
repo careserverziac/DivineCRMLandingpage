@@ -848,7 +848,96 @@ section {
         color: #ec4899;
     }
 
+/* ===== UNIQUE CTA (NO CONFLICT) ===== */
 
+.crm-cta-row {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.crm-btn-primary {
+    background: var(--grad);
+    color: #fff;
+    padding: 14px 30px;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-block;
+    font-family: var(--font);
+    transition: 0.2s;
+}
+
+    .crm-btn-primary:hover {
+        transform: translateY(-2px);
+    }
+
+.crm-btn-outline {
+    border: 1.5px solid rgba(255,255,255,0.2);
+    color: var(--text);
+    padding: 14px 30px;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    font-family: var(--font);
+    transition: 0.2s;
+}
+
+    .crm-btn-outline:hover {
+        border-color: rgba(79,110,247,0.6);
+        background: rgba(79,110,247,0.08);
+        transform: translateY(-2px);
+    }
+
+/* ===== UNIQUE CTA BUTTONS (NO GLOBAL CONFLICT) ===== */
+
+.crm-cta-btns {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.crm-btn-primary-lg {
+    background: var(--grad);
+    color: #fff;
+    padding: 16px 36px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-block;
+    font-family: var(--font);
+    transition: 0.2s;
+}
+
+    .crm-btn-primary-lg:hover {
+        transform: translateY(-2px);
+    }
+
+.crm-btn-outline-lg {
+    border: 1.5px solid rgba(255,255,255,0.2);
+    color: var(--text);
+    padding: 16px 36px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    font-family: var(--font);
+    transition: 0.2s;
+}
+
+    .crm-btn-outline-lg:hover {
+        border-color: rgba(79,110,247,0.6);
+        background: rgba(79,110,247,0.08);
+        transform: translateY(-2px);
+    }
 
 /* ── RESPONSIVE ── */
 @media (max-width:1024px) {
