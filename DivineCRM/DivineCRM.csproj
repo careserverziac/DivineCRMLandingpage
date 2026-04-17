@@ -157,8 +157,11 @@
     <Content Include="Content\Images\logo_only_light %281%29.svg" />
     <Content Include="Content\Images\logo_only_light.svg" />
     <Content Include="Content\Images\logo_with_name_dark.svg" />
+    <Content Include="Content\ImproveSalesFollowUps.css" />
     <Content Include="Content\Industries.css" />
     <Content Include="Content\LayoutMain.css" />
+    <Content Include="Content\LeadManagementBestPractices.css" />
+    <Content Include="Content\LeadManagementSoftwareBenefits.css" />
     <Content Include="Content\Login.css" />
     <Content Include="Content\Pricing.css" />
     <Content Include="Content\SignUp.css" />
@@ -216,6 +219,9 @@
     <Content Include="Views\Home\HowToImproveSale.cshtml" />
     <Content Include="Views\Home\CRMBenefitsForBusiness.cshtml" />
     <Content Include="Views\Home\WhatIsCRM.cshtml" />
+    <Content Include="Views\Home\LeadManagementBestPractices.cshtml" />
+    <Content Include="Views\Home\ImproveSalesFollowUps.cshtml" />
+    <Content Include="Views\Home\LeadManagementSoftwareBenefits.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

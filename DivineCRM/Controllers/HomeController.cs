@@ -124,7 +124,19 @@ namespace DivineCRM.Controllers
 
         }
 
+        public ActionResult LeadManagementBestPractices()
+        {
+            return View();
+        }
 
+        public ActionResult ImproveSalesFollowUps() 
+        {
+            return View();
+        }
+        public ActionResult LeadManagementSoftwareBenefits() 
+        {
+            return View();
+        }
 
     }
 }
