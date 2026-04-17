@@ -1014,6 +1014,32 @@ body {
         transform: translateY(-2px);
     }
 
+.benefit-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.benefit-num {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+    background: #4f6ef7;
+    color: #fff;
+    flex-shrink: 0;
+    margin-top:15px;
+
+}
+
+.benefit-header h3 {
+    margin: 0;
+}
+
 /* ── RESPONSIVE ── */
 @media (max-width:1024px) {
     .blog-layout {
